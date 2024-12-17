@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光影画廊</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!--============== Google Fonts =============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--============== Remixicons  =============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--============== Main CSS  =============-->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+
+<body>
+    <!-- ローディング画面 -->
+    <!-- <div class="loading" id="loading">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Loading</span>
+        </div>
+    </div> -->
+
+    <!--======================= Header =============================-->
+    <header id="header" class="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__brand">ZHOU ANQI</a>
+            <div id="nav-menu" class="nav__menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#photos" class="nav__link">Photos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#videos" class="nav__link">Videos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About Me</a>
+                    </li>
+                    <!-- <li class="nav__item">
+                        <a href="#blog" class="nav__link">Blog</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="nav__buttons">
+
+                <div class="nav__icon nav__toggle">
+                    <i id="nav-toggle" class="ri-menu-3-line"></i>
+                </div>
+                <div class="nav__icon sidebar__toggle">
+                    <i id="sidebar-toggle" class="ri-more-2-fill"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--======================= Sidebar =============================-->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar__header">
+                <h2 class="sidebar__title">Contact</h2>
+                <p class="sidebar__description">Thank you for viewing my photography works. If you're interested in my
+                    work, please feel free to contact me.</p>
+            </div>
+            <div class="sidebar__content">
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <span class="sidebar__subtitle">Address:</span>
+                        <span class="sidebar__subtitle__content">1-7-3, Nishi-Shinjuku, Tokyo</span>
+                    </li>
+                    <li class="sidebar__item">
+                        <span class="sidebar__subtitle">Open Hours:</span>
+                        <span class="sidebar__subtitle__content">9:30 AM - 19:30 PM</span>
+                    </li>
+                    <li class="sidebar__item">
+                        <span class="sidebar__subtitle">Call me:</span>
+                        <span class="sidebar__subtitle__content">+(080) 5382-0629</span>
+                    </li>
+                    <li class="sidebar__item">
+                        <span class="sidebar__subtitle">Mail Us:</span>
+                        <span class="sidebar__subtitle__content">zhouanqi465@gmail.com</span>
+                    </li>
+                    <li class="sidebar__item">
+                        <span class="sidebar__subtitle">Follow Me:</span>
+                        <ul class="social__list">
+                            <li class="social__item">
+                                <a href="javascript:void(0)" class="social__link">
+                                    <i class="ri-facebook-fill"></i>
+                                </a>
+                            </li>
+                            <li class="social__item">
+                                <a href="javascript:void(0)" class="social__link">
+                                    <i class="ri-instagram-fill"></i>
+                                </a>
+                            </li>
+                            <li class="social__item">
+                                <a href="javascript:void(0)" class="social__link">
+                                    <i class="ri-twitter-fill"></i>
+                                </a>
+                            </li>
+                            <li class="social__item">
+                                <a href="javascript:void(0)" class="social__link">
+                                    <i class="ri-youtube-fill"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!--======================= Home =============================-->
+    <section id="home" class="home">
+        <div class="d-grid home__wrapper container">
+            <div class="home__content">
+                <h1 class="home__title">Explore
+                    the colorful and wonderful world!</h1>
+                <p class="home__description">Hello,I am Zhou anqi. Welcome to my website. You can browse here or
+                    take a look at my works.</p>
+                <a href="#photos" class="btn btn--primary">Explore</a>
+            </div>
+            <img src="assets/img/logowhite.png" alt="" class="home__img">
+        </div>
+    </section>
+
+    <!--======================= photos =============================-->
+
+    <section id="photos" class="section photos">
+        <div class="section__header">
+            <h1 class="section__subtitle">Photos</h1>
+        </div>
+
+        <div class="photos-content">
+            <a href="./Summer.html" id="Summer">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album1.jpg" alt="">
+                    </div>
+                    <div class="photos-content-album-words">
+                        <span>Summer</span>
+                        <p>2021</p>
+                    </div>
+                </section>
+            </a>
+
+
+            <a href="./Autumn.html" id="Autumn">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-words">
+                        <span>Autumn</span>
+                        <p>2021</p>
+                    </div>
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album2.jpg" alt="">
+                    </div>
+                </section>
+            </a>
+
+
+            <a href="./At Night.html" id="At Night">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album3.jpg" alt="">
+                    </div>
+                    <div class="photos-content-album-words">
+                        <span>At Night</span>
+                        <p>2022</p>
+                    </div>
+                </section>
+            </a>
+
+
+            <a href="./Hong Kong.html" id="Hong Kong">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-words">
+                        <span>Hong Kong Style</span>
+                        <p>2020</p>
+                    </div>
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album4.jpg" alt="">
+                    </div>
+
+                </section>
+            </a>
+
+
+            <a href="./Esquisite.html" id="Exquisite photograph">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album5.jpg" alt="">
+                    </div>
+                    <div class="photos-content-album-words">
+                        <span>Exquisite photograph</span>
+                        <p>2022</p>
+                    </div>
+                </section>
+            </a>
+
+
+            <a href="./Film photography.html" id="Film photography">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-words">
+                        <span>Film photography</span>
+                        <p>2021</p>
+                    </div>
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album6.jpg" alt="">
+                    </div>
+
+                </section>
+            </a>
+
+
+            <a href="./Mobile photography.html" id="Mobile photography">
+                <section class="photos-content-album">
+                    <div class="photos-content-album-photo">
+                        <img src="./assets/img/album7.jpg" alt="">
+                    </div>
+                    <div class="photos-content-album-words">
+                        <span>Mobile photography</span>
+                        <p>2021</p>
+                    </div>
+                </section>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!--======================= Videos ============================-->
+    <section id="videos" class="section videos">
+        <div class="section__header">
+            <h1 class="section__subtitle">Videos</h1>
+        </div>
+
+        <div class="content-videos">
+
+            <section class="content-videos-section">
+                <div class="section-video">
+                    <video src="./assets/videos/PR.mp4" id="PR" controls></video>
+                </div>
+
+                <div class="section-words">
+                    <span>PR video</span>
+                    <p>2024</p>
+                </div>
+            </section>
+
+            <section class="content-videos-section">
+                <div class="section-words">
+                    <span>Lolita</span>
+                    <p>2022</p>
+                </div>
+                <div class="section-video">
+                    <video src="./assets/videos/Lolita.mp4" id="lolita" controls></video>
+                </div>
+
+
+
+            </section>
+
+            <section class="content-videos-section">
+                <div class="section-video">
+                    <video src="./assets/videos/Spring.mp4" id="Spring" controls></video>
+                </div>
+
+                <div class="section-words">
+                    <span>Spring</span>
+                    <p>2022</p>
+                </div>
+            </section>
+
+            <section class="content-videos-section">
+                <div class="section-words">
+                    <span>California Dreaming</span>
+                    <p>2021</p>
+                </div>
+                <div class="section-video">
+                    <video src="./assets/videos/California Dreaming.mp4" id="California Dreaming" controls></video>
+                </div>
+
+
+            </section>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!--======================= about ============================-->
+    <section id="about" class="section about">
+        <div class="section__header">
+            <h1 class="section__subtitle">About Me</h1>
+        </div>
+
+        <div class="about-content">
+            <!-- card -->
+            <div class="card">
+                <div class="shell">
+                    <img src=".//assets/img/malou.jpg" alt="" class="cover">
+                    <div class="head">
+                        <div class="data">
+                            <div class="title1">周 安琪<span>MALOU</span></div>
+                            <div class="title2">ZHOU ANQI</div>
+                        </div>
+                    </div>
+                    <div class="foot">
+                        <div class="tags">
+                            <span class="tag">#吗喽🍌</span>
+                            <span class="tag">#鼠鼠🥜</span><br>
+                            <span class="tag">#吃</span>
+                            <span class="tag">#喝</span>
+                            <span class="tag">#玩</span>
+                            <span class="tag">#乐</span><br>
+                            <span class="tag">#不想上学</span>
+                            <span class="tag">#世界和平</span>
+
+                        </div>
+                        <div class="introduce">
+                            <p>
+                                吗喽です！<br>
+                                毎日何を食べるか悩む<br>
+                                バナナ食べようかな~~~🍌<br>
+
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-grid about__wrapper container">
+                <div class="about__content">
+                    <span class="about__subtitle">Welcome to MALOU's Channel</span>
+                    <h2 class="about__title">マロのチャンネルへようこそ～</h2>
+                    <p class="about__description">
+                        バナナ食べたらマロになる<br>
+                        森でみんなと会えるかもしれない<br>
+                        熱帯雨林でブランコに乗ることが好き<br>
+                        <br>
+                        寝ても寝ても眠い💤<br>
+                        たまに写真と動画を撮る
+                    </p>
+                    <a href="https://space.bilibili.com/1487145694?spm_id_from=333.337.0.0" class="btn btn--primary"
+                        target="_blank">Discover MALOU's Story</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="kansya">
+            <p>マロがとうございます！</p>
+            <img src="./assets/img/kansya.jpg" alt="">
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!--======================= Footer ============================-->
+    <footer class="footer">
+        <div class="d-grid footer__wrapper container">
+            <div class="footer__content">
+                <h4 class="footer__brand"><span>Foto Pōtoforio</span></h4>
+                <p class="footer__description">Thank you for viewing my photography works. <br>
+                    If you're interested
+                    in my
+                    work, please feel free to contact me.</p>
+                <ul class="social__list footer__list">
+                    <li class="social__item">
+                        <a href="javascript:void(0)" class="social__link">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                    </li>
+                    <li class="social__item">
+                        <a href="javascript:void(0)" class="social__link">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </li>
+                    <li class="social__item">
+                        <a href="javascript:void(0)" class="social__link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </li>
+                    <li class="social__item">
+                        <a href="javascript:void(0)" class="social__link">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__content">
+                <h4 class="footer__title">Photos</h4>
+                <ul class="footer__list">
+                    <li class="footer__item">
+                        <a href="#Summer" class="footer__link">Summer</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Autumn" class="footer__link">Autumn</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#At Night" class="footer__link">At Night</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Hong Kong" class="footer__link">Hong Kong</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Exquisite photograph" class="footer__link">Exquisite photograph</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Film photography" class="footer__link">Film photography</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Mobile photography" class="footer__link">Mobile photography</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__content">
+                <h4 class="footer__title">Videos</h4>
+                <ul class="footer__list">
+                    <li class="footer__item">
+                        <a href="#PR" class="footer__link">PR video</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#lolita" class="footer__link">Lolita</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#Spring" class="footer__link">Spring</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="#California Dreaming" class="footer__link">California Dreaming</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__content">
+                <h4 class="footer__title">About Me</h4>
+                <ul class="footer__list">
+                    <li class="footer__item">
+                        <a href="./index.html" class="footer__link">Contact</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="javascript:void(0)" class="footer__link">Terms Of Use</a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="javascript:void(0)" class="footer__link">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__copyright">&copy; 2024 ZHOU ANQI Code. All Rights Reserved</p>
+    </footer>
+
+
+
+    <!--=================== Loading ==================-->
+    <script src="./assets/js/loading.js" defer></script>
+
+
+    <!--=================== ScrollReveal ==================-->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--=================== Mixitup  ====================-->
+    <script src="assets/js/mixitup.min.js"></script>
+
+    <!--=================== Main JS ====================-->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
