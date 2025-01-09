@@ -1,6 +1,8 @@
 @charset "utf-8";
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -107,11 +109,11 @@ header {
 } */
 
 .header-middle {
-    margin: 1.6em 0;
+    margin: 1em 0;
     display: flex;
     justify-content: space-around;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 3.8em;
     align-items: stretch;
 }
 
@@ -130,7 +132,7 @@ header {
 .header-middle-left,
 .header-middle-right {
     
-    line-height: 0.6em;
+    line-height: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,6 +145,7 @@ header {
 }
 
 .header-middle-middle h1{
+    margin-top: 0.25em;
     font-size: 3.2em;
     font-weight: 900;
     -webkit-text-stroke: 0.15rem #554739; 
@@ -239,3 +242,152 @@ header {
 }
 
 
+/* container */
+.container{
+    text-align: justify;
+    font-family: serif ;
+    font-size: 1.6rem;
+    border-left: 0.4rem solid #604f40;
+    border-right: 0.4rem solid #604f40;
+    margin-top: 2rem;
+    padding: 0em 2rem;
+    max-height: 85vh;
+    overflow-y: auto;  /* 允许垂直滚动 */
+    scrollbar-width: none;  /* Firefox 隐藏滚动条 */
+    -ms-overflow-style: none;  /* IE 隐藏滚动条 */
+}
+.container::-webkit-scrollbar {
+    display: none; /* Chrome 隐藏滚动条 */
+}
+
+/* main-top */
+.container h1,h2{
+    color: #41362c;
+    font-family: '方正剪纸简体';
+    font-size: 4rem;
+    letter-spacing: 0.05em;
+}
+
+.main-top{
+    display: flex;
+    justify-content: center;
+}
+
+.main-top-left{
+    width: 66vw;
+    padding-right: 2.4em;
+    border-right: 0.2rem solid #604f40;
+
+}
+
+.main-top-right{
+    width: 33vw;
+    padding-left: 2.4em;
+}
+
+.about-me{
+    display: flex;
+    justify-content: center;
+
+}
+
+.about-me-left img{
+    width: 24vw;
+    margin: 1em 0;
+    
+}
+
+.about-me-left p{
+    width: 24vw;
+    line-height: 2.6rem;
+}
+
+
+.about-me-right{
+    margin-left: 2.6em;
+}
+
+
+.profile{
+    margin-top: 4em;
+}
+/* 每行的布局 */
+.profile-item {
+    display: flex;                 
+    justify-content: space-between; 
+    align-items: center;          
+    padding-top: 4rem;            
+    border-bottom: 0.15em solid #695747; 
+    font-size: 1.1em;
+}
+
+/* 标签和内容的样式 */
+.label {
+    font-weight: bold;
+}
+
+.value {
+    text-align: right;
+}
+
+.about-me-right p{
+    margin-top: 8.4rem;
+    line-height: 2.6rem;
+}
+
+.part-time-job h1{
+    text-align: center;
+}
+
+/* 容器样式 */
+.job-bartender {
+    margin: 0 auto;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    text-align: justify;
+    position: relative;
+}
+
+/* 左侧瓶子图片 */
+.bottle-img {
+    float: left;
+    width: 5vw;  /* 使用视口宽度控制大小 */
+    margin: 1rem 1.5rem 0 0; /* 上方留白 */
+    shape-outside: circle(50%);
+    clip-path: circle(50%);
+    position: relative;
+    transform: translateY(2rem); /* 可根据需要微调位置 */
+}
+
+/* 右侧草图片 */
+.grass-img {
+    float: right;
+    width: 3vw;  /* 使用视口宽度控制大小 */
+    margin: 1rem 0 0 1.5rem;  /* 更大的上方间距 */
+    shape-outside: circle(50%);
+    clip-path: circle(50%);
+    position: relative;
+    transform: translateY(-1rem); /* 向上微调 */
+}
+
+/* 清除浮动 */
+.job-bartender::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+
+.job-home-tutor h2{
+    justify-items: center;
+    font-family: "Zen Antique";
+    width: 28vh;
+    font-weight: 700;
+    font-size: 2.6rem;
+    text-align: center;
+    padding: 0.4rem;
+    border:0.2rem solid #604f40;
+    margin: 2.4rem auto 2rem;
+
+}

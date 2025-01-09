@@ -20,9 +20,9 @@
 <body>
 
     <!-- ローディング -->
-    <div class="loading">
+    <!-- <div class="loading">
         <img class="loading-logo" src="./image/loading-logo1.png" alt="loading-logo">
-    </div>
+    </div> -->
 
     <!-- ヘッダー -->
     <header>
@@ -61,14 +61,20 @@
 
                 </div>
             </div>
-            <!-- header-line-bottom -->
-            <div class="header-line-bottom">
-                <img src="./image/header-line-bottom.png" alt="">
-            </div>
+
     </header>
 
     <!-- nav -->
+
+    <!-- header-line-bottom -->
+
+
     <nav class="navbar">
+
+        <div class="header-line-bottom">
+            <img src="./image/header-line-bottom.png" alt="">
+        </div>
+
         <ul class="nav-links">
             <li><a href="#about-me">About Me</a></li>
             <li><a href="#job">Part-time Job</a></li>
@@ -79,27 +85,105 @@
     </nav>
 
     <!-- main -->
-    <main class="main-top">
-        <section class="about-me" id="about-me">
+    <main class="container">
+        <div class="main-top">
+            <div class="main-top-left">
+                <!-- About Me Section -->
+                <section class="about-me" id="about-me">
+                    <div class="about-me-left">
+                        <h1>About Me</h1>
+                        <div>
+                            <img src="./image/my-picture2.png" alt="Profile Picture">
+                        </div>
 
-        </section>
+                        <p>
+                            こんにちは、周安琪（しゅう あんき）です！<br>
+                            北京工業大学で広告学を専攻し、卒業を経て、現在はHAL東京で情報処理を学んでいます。Webデザインからプログラミング、システム開発、データベース設計まで幅広く勉強中です。<br>
+                            特に、HTML・CSS・JavaScript
+                            を使ったフロントエンドのWebページ作成や、PythonのDjango・Flaskを用いたバックエンド開発に力を入れています。
+                        </p>
+                    </div>
+
+                    <div class="about-me-right">
+                        <div class="profile" id="profile">
+                            <div class="profile-item">
+                                <span class="label">名前</span>
+                                <span class="value">周 安琪</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">生年月日</span>
+                                <span class="value">2001-06-29</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">出身地</span>
+                                <span class="value">中国・北京</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">学校</span>
+                                <span class="value">HAL東京</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">専門</span>
+                                <span class="value">情報処理</span>
+                            </div>
+                        </div>
+                        <p>
+                            デザイン性だけでなく、機能性にもこだわり、見やすく使いやすいWeb体験を目指しています。<br>
+                            今年で23歳になり、出身は中国・北京です。趣味は撮影と動画編集で、クリエイティブな表現を大切にしています。
+                            私のサイトをご覧いただき、誠にありがとうございます。<br>
+                            ぜひ、私のポートフォリオを楽しんでいってください！
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <div class="main-top-right">
+                <!-- Part-time Job Section -->
+                <section class="part-time-job" id="job">
+                    <h1>Part-time<br>Job</h1>
+                    <div class="job-bartender">
+                        <img src="./image/bottle.png" alt="bottle image" class="bottle-img">
+                        <img src="./image/grass.png" alt="grass image" class="grass-img">
+                        <p>
+                            私は日本に来てからずっとバーでバーテンダーとして働いています。最初は日本の文化をよく知らず、お年寄りのお客様が多かったため、どのように話しかければ良いか悩むことも多く、接客に苦労しました。しかし、自分の成長のために他のバーにも足を運び、接客方法を観察しながら勉強を続けました。その結果、お客様の気持ちやニーズを理解できるようになり、より良い接客ができるようになりました。今ではお客様と楽しくスムーズにコミュニケーションを取ることができています。
+                            この経験はクラスのチームワークにも活かされ、提案やプロジェクト制作の際には、積極的にメンバーの意見を引き出し、皆で一体感を持って取り組むことができました。
+                        </p>
+
+                    </div>
+
+                    <div class="job-home-tutor">
+                        <h2>Home Tutor</h2>
+
+                        <p>
+                            私は授業以外の時間に中国語の家庭教師をしています。主に会話練習や文法の指導を行い、生徒の目標に応じて学習計画をカスタマイズしています。教える過程で説明力や問題解決能力が鍛えられ、異なる背景を持つ人々と交流する中で、相手の立場に立って考える力も身につけました。
+                        </p>
+                        <img src="./image/book.png" alt="book">
+
+                    </div>
+                </section>
+
+            </div>
 
 
 
 
-        <section class="part-time-job" id="job">
-
-        </section>
 
 
-        <section class="hobbies" id="hobbies">
+            <!-- Hobbies Section -->
+            <section class="hobbies" id="hobbies">
 
-        </section>
+            </section>
 
+            <!-- Strength Section -->
+            <section class="strength" id="strength">
 
-        <section class="strength" id="strength">
+            </section>
 
-        </section>
+        </div>
+
 
     </main>
 
