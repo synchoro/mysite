@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="top">
+    <div class="tool">
+        <div class="class-info">
+            <form method="get" action="{% url 'grades_list' %}">
+                <span>クラス名:</span>
+                <input type="text" name="search" placeholder="クラス名を検索..." value="">
+                <input type="submit" value="検索">
+                <a href="{% url 'grade_create' %}">
+                    <button type="button" class="add_short">追加</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="bottom">
+    <table>
+        <thead>
+            <tr>
+                <th>クラス名</th>
+                <th>クラス番号</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in grades %}
+            <tr>
+                <td>{{grade.grade_name}}</td>
+                <td>{{grade.grade_number}}</td>
+                <td>
+                    <a href="{% url 'grade_update' grade.pk %}">
+                        <button class="add">編集</button>
+                    </a>
+                    <a href="{% url 'grade_delete' grade.pk %}">
+                        <button class="del">削除</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <!-- ページネーション -->
+    <div class="pagination">
+        <span class="step-links">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; ホーム</a>
+                <a href="?page={{ page_obj.previous_page_number }}">前のページ</a>
+                {% endif %}
+
+                <span class="current">
+                    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">次のページ</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
+                {% endif %}
+            </span>
+        </span>
+    </div>
+
+
+
+    {% endblock %}

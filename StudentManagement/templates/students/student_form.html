@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/sweetalert2.css' %}">
+<script src="{% static 'js/sweetalert2.js' %}"></script>
+
+<body>
+  <div class='container'>
+    {% if student.pk %}
+    <h2>学生情報を編集</h2>
+    {% else %}
+    <h2>学生情報を追加</h2>
+    {% endif %}
+
+    <form id="form" method='POST'>
+      {% csrf_token %}
+      {% for field in form %}
+      <!-- {% if field.name != "user" %} 跳过 user 字段 -->
+      <div class='form-group'>
+        <label for={{ field.id_for_label }}>{{ field.label }}:</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+      </div>
+      <!-- {% endif %} -->
+      {% endfor %}
+
+      <div class='handleButton'>
+        <button type='submit' id='saveButton'>保存</button>
+        <button type='button' id='cancelButton' onclick="window.parent.Swal.close()">キャンセル</button>
+      </div>
+    </form>
+  </div>
+
+  {% if student.pk %}
+  <!-- タグが存在する場合は編集 -->
+  <script>
+    var actionUrl = "{% url 'student_update' student.pk %}";
+  </script>
+  <!-- 存在しない場合は新規作成 -->
+  {% else %}
+  <script>
+    var actionUrl = "{% url 'student_create' %}";
+  </script>
+  {% endif %}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+      const url = actionUrl;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // 阻止默认提交
+        let formData = new FormData(form);
+
+        fetch(url, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            let errorMessage = ''; // 确保 errorMessage 定义
+            if (data.status === 'success') {
+              Swal.fire({
+                icon: 'success',
+                title: data.messages,
+                text: 'データが正常に送信されました。'
+              }).then((result) => {
+                if (result.value) {
+                  window.parent.location.reload();
+                }
+              });
+            } else {
+              const errors = data.messages; // 假设已是对象
+              for (const field in errors) {
+                if (errors.hasOwnProperty(field)) {
+                  errors[field].forEach(error => {
+                    errorMessage += `<li style="color:red;text-align:left;margin-left: 100px;margin-bottom:6px">${error.message}</li>`;
+                  });
+                }
+              }
+              Swal.fire({
+                icon: 'error',
+                title: 'エラー',
+                html: errorMessage,
+                confirmButtonText: '閉じる'
+              });
+            }
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'ネットワークエラー',
+              text: 'ネットワークに接続できませんでした。',
+              confirmButtonText: '閉じる'
+            });
+          });
+      });
+    });
+
+  </script>
+
+
+</html>

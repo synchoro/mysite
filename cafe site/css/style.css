@@ -1,0 +1,382 @@
+@charset "UTF-8";
+
+body{
+    font-family: "游明朝","游ゴシック","隶书","07あかずきんポップ","MS P明朝",sans-serif;
+    background: #d4d4d4;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header h1{
+    text-align: center;
+    margin: 50px auto;
+    font-family:"隶书" ;
+    
+}
+
+header p{
+    font-size: 70px;
+    letter-spacing: 5px;
+    font-family:"07あかずきんポップ" ;
+
+}
+
+header img{
+    width: 80%;
+    align-items: center;
+    display: block;
+    margin: auto;
+}
+
+.navigation_main li{
+    writing-mode: vertical-rl;
+    margin-bottom: 22px;
+    padding:0 25px 0 5px;
+    list-style: none;
+}
+
+.navigation_main a:link{
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #3a3a3a;
+    text-decoration: none;
+}
+
+.navigation_main a:visited{
+    color: #3a3a3a;
+}
+
+.navigation_main a:hover{
+    color: #7b7b7b;
+}
+
+.navigation_main{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-top: 20px;
+}
+
+.introduction_info{
+    margin-top: 50px;
+    text-align: center;
+}
+
+
+
+
+.introduction_img img{
+    width: 530px;
+}
+
+.introduction_section{
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    margin: 100px auto;
+    align-items: center;
+}
+
+.introduction_reverse .introduction_section:nth-child(odd){
+    flex-direction: row-reverse;
+}
+
+.introduction_section .introduction_words p{
+    font-size: 16px;
+    line-height: 2;
+    justify-content: center;
+    margin: auto 20px;
+    text-align: justify;
+}
+
+.introduction{
+    margin-bottom: 150px;
+}
+
+
+
+
+
+
+
+/* フッター */
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    height: 200px;
+    /* self-end 将元素与容器的主轴末端或交叉轴末端对齐，轴末端的方向对应于元素的结尾方向。 */
+    align-items: flex-end;    
+    border-top: dotted 1px #3a3a3a;    
+    margin: 0 auto;
+    margin-top: 135px;
+}
+
+.footer_info{
+    padding-top: 50px
+}
+
+.footer_info h3{
+    margin-top: 30px;
+}
+
+.footer_info ul{
+    margin-bottom: -2px;
+}
+
+.footer_info li{
+    font-family: "游明朝","游ゴシック","宋体",sans-serif;
+    margin: 5px 0;
+}
+
+.footer_navigation ul li{
+    list-style: none;
+    margin: 20px 0;
+    font-size: 15px;
+    color: #3a3a3a;
+    font-weight: bold;
+    text-align: right;  
+}
+
+.footer_navigation ul li a:link{
+    text-decoration: none;
+    color: #3a3a3a;
+}
+
+.footer_navigation ul li a:visited{
+    color: #3a3a3a;
+}
+
+.footer_navigation ul li a:hover{
+    color: #7b7b7b;
+    text-decoration: underline;
+}
+
+
+
+.left_fixed p{
+    writing-mode: vertical-rl;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: left;
+    vertical-align: text-bottom;
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin:0 0 25px 35px;
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+
+/* menu */
+
+
+.menu_img img{
+    width: 100%;
+}
+
+.menu_img{
+    width: 30%;
+}
+
+.menu_title{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    align-items:center;
+    width: 100%;
+    margin-bottom: 120px;
+}
+
+.menu_navigation{
+    padding-left: 30px;
+    margin-bottom: -30px;
+}
+
+.menu_introduction h2{
+    margin-top: 100px;
+    margin: 100px auto 40px;
+    text-align: center;
+}
+
+
+
+.menu_navigation ul li{
+    padding: 15px;
+    list-style: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu_navigation ul li a:link{
+    text-decoration: none;
+    color: #3a3a3a;
+}
+
+.menu_navigation ul li a:visited{
+    color: #3a3a3a;
+}
+
+.menu_navigation ul li a:hover{
+    color: #7b7b7b;
+    
+}
+
+
+
+
+.menu_main h2{
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+.menu_section img{
+    width: 350px;
+    transition: 0.3s;
+}
+
+.menu_content{
+    display: flex;
+    /* justify-content: space-around; */
+    /* padding: 50px 60px; */
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+
+.menu_section{
+    padding: 30px 30px;
+    cursor: pointer;
+}
+
+.menu_section p{
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.menu_section img:hover{
+    /* color: rgba(0, 0, 0, 0.8); */
+    filter: brightness(0.8) hue-rotate(-10deg);
+    opacity: 0.7;
+}
+
+
+
+
+
+/* access */
+
+.access_content{
+    margin: 80px auto 10px;
+    font-family: "游明朝","游ゴシック","宋体",sans-serif;
+    width: 960px;
+}
+
+.access_content h2{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.map{
+    justify-content: center;
+}
+
+
+
+.tableStyle iframe{
+    margin-bottom: 40px;
+
+}
+
+.tableStyle{
+    line-height: 1.8;
+}
+
+
+
+
+
+
+/* contact */
+
+.contact_content{
+    width: 700px;
+    margin: 0 auto;
+}
+
+.contact_content h2{
+    text-align: center;
+    margin: 80px auto 30px;
+}
+
+.contact-form{
+    margin-bottom: 50px;
+    margin: 0 auto;
+
+}
+
+form{
+    width: 100%;
+}
+
+form ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 600px;
+}
+
+form li{
+    padding: 6px;
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form li#send{
+    margin-top: 6px;
+}
+
+form label{
+    width: 20%;
+}
+
+form input,form textarea{
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #3f312b;
+    border-radius: 4px;
+    /* 入力するときの */
+    font-size: 16px;
+}
+
+/* 输入字的时候输入框的背景颜色会改变 */
+form input:focus,form textarea:focus{
+    background-color: #d8ccc6;
+    border: 1px solid #633a3a;
+}
+
+form li#send button{
+    width: 20%;
+    padding: 10px 0;
+    background: #3f312b;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    /* 鼠标悬浮时变成手的图标 */
+    cursor: pointer;
+    
+}
+
+form li#send button:hover{
+    background-color: #7c6a62;
+}

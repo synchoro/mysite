@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+<div class="bottom">
+  <div class="container">
+    <h1 style="text-align: center;">削除確認</h1>
+    <p style="margin: 20px;text-align: center;">【{{grade.grade_name}}】を削除してもよろしいですか？<br>
+      この操作は取り消せません。</p>
+    <form action="" method="post" style="text-align: center;">
+      {% csrf_token %}
+      <div class="handleButton">
+        <button type="submit" id="cancelButton">削除を確認</button>
+        <a href="{% url 'grades_list' %}" style="text-decoration: none;">
+          <button type="button">キャンセル</button>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

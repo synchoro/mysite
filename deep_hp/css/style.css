@@ -1,0 +1,272 @@
+/* Hiiiiii Good morning~!*/
+
+/* deep gay bar let's go gay bar */
+/* "GO!!!" */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    height: 100%;
+    background-color: #000;
+    font-family: '游ゴシック', '游ゴシック体', sans-serif;
+}
+
+/* ヘッダー */
+.header {
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    font-family: "Michroma", sans-serif;
+}
+
+.header__logo {
+    width: 30%;
+
+}
+
+.header__logo img {
+    width: 50%;
+}
+
+/* ヘッダーナヴィゲーション */
+
+.header__navigation {
+    width: 40%;
+    padding-bottom: 1rem;
+}
+
+.header__navigation ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__navigation li {
+    list-style: none;
+}
+
+.header__navigation li a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e854ff;
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+
+.header__navigation li a:hover {
+    color: #00ffa6;
+}
+
+
+.first-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.first-photo img {
+    display: block;
+    width: 100%;
+}
+
+
+.first-photo .button img {
+    position: absolute;
+    bottom: 4rem;
+    cursor: pointer;
+
+}
+
+
+button,
+button::after {
+    outline: transparent;
+}
+
+
+button::after {
+    --slice-0: insert(50% 50% 50% 50%);
+    --slice-1: insert(80% -6px 0 0);
+    --slice-2: insert(50% -6px 30% 0);
+    --slice-3: insert(10% -6px 85% 0);
+    --slice-4: insert(40% -6px 43% 0);
+    --slice-5: insert(80% -6px 5% 0);
+}
+
+
+
+
+
+/* content */
+/* front */
+.front-content .front-hd img {
+    width: 10rem;
+    margin: 1.5rem 0;
+    margin-left: 1.5rem;
+    /* width: 194px;
+    height: 39px;
+    margin: 34px;
+    margin-left: 31px; */
+}
+
+
+.front-bd img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.front-bd .front-bd-word .front-bd-gaybar img {
+    position: absolute;
+    bottom: 26rem;
+    left: 33%;
+    width: 30%;
+    height: 12%;
+
+}
+
+
+.front-bd .front-bd-word .front-bd-deep img {
+    position: absolute;
+    bottom: 18rem;
+    left: 40%;
+    width: 15%;
+    height: 12%;
+
+}
+
+
+
+.front-bd .front-bd-word .front-bd-kazari-bottom img {
+    width: 25rem;
+    height: 3rem;
+    /* transform: rotate(-90deg); */
+
+    margin: .4rem 0 2rem -2rem;
+
+}
+
+.front-bd .front-bd-word .front-bd-kazari-top img {
+    position: absolute;
+    width: 3.5rem;
+    height: 30rem;
+    /* transform: rotate(-90deg); */
+
+    margin: .4rem 0 2rem -2rem;
+
+    right: 3rem;
+    top: .5rem;
+
+
+}
+
+/* middle */
+
+.middle-content {
+    position: relative;
+}
+
+
+.middle-content .middle-content-blank {
+    height: 25rem;
+}
+
+.middle-content .middle-content-purple img {
+    width: 100%;
+}
+
+.middle-content .middle-content-bd .middle-content-frame img {
+    position: absolute;
+    width: 80%;
+    top: 6rem;
+    left: 10%;
+}
+
+
+.middle-content .middle-content-bd .middle-content-word img {
+    position: absolute;
+    width: 13%;
+    top: 12rem;
+    right: 3rem;
+}
+
+.middle-content .middle-content-bd .middle-content-menu img {
+    position: absolute;
+    width: 28%;
+    bottom: 20rem;
+    left: 36%;
+}
+
+
+.middle-menu {
+    position: relative;
+}
+
+.middle-menu .middle-menu-blank {
+    height: 60rem;
+
+}
+
+
+
+.middle-menu-content-set img {
+    width: 70%;
+}
+
+
+.middle-menu-content-set p {
+    margin-top: 2rem;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.middle-menu-content {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    top: -13rem;
+}
+
+
+.kazari-cup img {
+    position: absolute;
+    width: 10%;
+    right: 8rem;
+    bottom: -4rem;
+}
+
+
+.kazari-left img {
+    position: absolute;
+    width: 25%;
+    bottom: -18rem;
+    left: 1rem;
+}
+
+.kazari-right img {
+    position: absolute;
+    width: 15%;
+    height: 12%;
+    right: 0;
+    bottom: -15rem;
+
+}
+
+/* フッターエリア */
+.footer {
+    text-align: center;
+    padding: 10px;
+    /* height: 10vh; */
+}

@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+{% load url_utils %}
+
+{% block content %}
+
+<div class="right">
+  <div class="top">
+    <div class="tool">
+      <div class="class-info">
+        <form method="get" action="/students/">
+          <span>クラス: </span>
+          <select name="grade">
+            <option value="" selected>クラスを選択してください</option>
+            {% for grade in grades %}
+            <option value="{{ grade.pk }}">
+              {{ grade.grade_name }}
+            </option>
+            {% endfor %}
+          </select>
+
+          <span>名前/学籍番号:</span>
+          <input type="text" name="search" value style="width: 120px;">
+          <input type="submit" value="検索" style="cursor:pointer ;">
+        </form>
+      </div>
+      <div class="actions">
+        <button type="button" class="add" id="add">新規作成</button>
+        <button type="button" class="del" id="del-all">一括削除</button>
+        <button type="button" class="import" id="import">インポート</button>
+        <button type="button" class="export" id="export">エクスポート</button>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="select-all"></th>
+          <th>名前</th>
+          <th>クラス名</th>
+          <th>学籍番号</th>
+          <th>性別</th>
+          <th>生年月日</th>
+          <th>連絡先</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td><input type="checkbox" name="student_ids" value="{{student.pk}}"></td>
+          <td>{{student.student_name}}</td>
+          <td>{{student.grade}}</td>
+          <td>{{student.student_number}}</td>
+          <td>{{student.gender}}</td>
+          <td>{{student.birthday}}</td>
+          <td>{{student.contact_number}}</td>
+          <td>
+            <a href="{% url 'student_update' student.pk %}" class="btn btn-primary btn-sm edit">編集</a>
+            <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger btn-sm del">削除</a>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+    <!-- ページネーション -->
+    <div class="pagination">
+      <span class="step-links">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a href="?{% search_url request page=1 %}">&laquo; ホーム</a>
+          <a href="?{% search_url request page=page_obj.previous_page_number %}">前のページ</a>
+          {% endif %}
+
+
+          <span class="current">
+            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">次のページ</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
+          {% endif %}
+        </span>
+      </span>
+    </div>
+
+    <style>
+      .swal2-html-container.error-message {
+        font-size: 14px;
+        font-family: 'Yu Mincho', serif;
+      }
+    </style>
+
+
+
+
+    <script>
+      // 全体チェック
+      document.getElementById('select-all').addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('input[name="student_ids"]');
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = this.checked;
+        });
+      });
+
+      // 一括削除
+      document.getElementById('del-all').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll("input[name='student_ids']:checked");
+        if (checkboxes.length === 0) {
+          Swal.fire({
+            title: 'エラー',
+            text: '削除する学生情報が選択されていません',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+          return;
+        }
+        //選択されたら、fetchでリクエストを送信する
+        Swal.fire({
+          title: '選択したデータを削除しますか？',
+          icon: 'warning',
+          showCancelButton: true,
+          cancelButtonText: 'キャンセル',
+          confirmButtonText: '削除',
+          confirmButtonColor: '#d33'
+        })
+          // resultがconfirmかどうかを判断
+          .then((result) => {
+            if (result.isConfirmed) {
+              // フォームオブジェクトを作成  创建表单对象
+              const formData = new FormData();
+              // // 選択されたすべてのデータをループ処理  遍历所有选中的数据
+              checkboxes.forEach((checkbox) => {
+                formData.append('student_ids', checkbox.value);
+              });
+
+              fetch("{% url 'student_bulk_delete' %}", {
+                method: 'POST',
+                headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: formData
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.status === 'success') {
+                    Swal.fire({
+                      title: '削除しました！',
+                      text: data.messages,
+                      icon: 'success',
+                      confirmButtonText: 'OK'
+                    }).then(() => {
+                      // ユーザーが「OK」をクリック後にリロードする
+                      window.location.reload();
+                    });
+                  } else {
+                    Swal.fire('エラー', data.messages, 'error');
+                  }
+                });
+            }
+          });
+      });
+
+      // インポート
+    </script>
+
+    <script>
+      // 新規作成
+      document.getElementById('add').addEventListener('click', function () {
+        Swal.fire({
+          position: 'top-end',
+          html: `
+                    <iframe 
+                        src="{% url 'student_create' %}" 
+                        width="100%" 
+                        height="800px" 
+                        frameborder="0" 
+                        style="border:none;">
+                    </iframe>
+                `,
+          width: 600,
+          showConfirmButton: false,
+        });
+      });
+
+      // 編集
+      document.querySelectorAll('.edit').forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault(); //リンクのデフォルトの遷移を防ぐ
+          // 現在のボタンの href 属性値を取得する
+          url = this.getAttribute('href')
+          // console.log(url)
+          Swal.fire({
+            position: 'top-end',
+            html: `
+                    <iframe 
+                        src="${url}" 
+                        width="100%" 
+                        height="800px" 
+                        frameborder="0" 
+                        style="border:none;">
+                    </iframe>
+                `,
+            width: 600,
+            showConfirmButton: false,
+          });
+        })
+      })
+
+      // 削除
+      document.querySelectorAll('.btn-danger').forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault(); //リンクのデフォルトの遷移を防ぐ
+          // 現在のボタンの href 属性値を取得する
+          const url = this.getAttribute('href');
+          console.log(url);
+
+          Swal.fire({
+            title: '削除しますか？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'はい',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'キャンセル'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // バックエンドにデータを送信する
+              fetch(url, {
+                method: 'DELETE',
+                headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'X-CSRFToken': '{{ csrf_token }}',
+                },
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.status === 'success') {
+                    Swal.fire({
+                      title: '削除しました！',
+                      text: data.messages,
+                      icon: 'success',
+                      confirmButtonText: 'OK'
+                    }).then(() => {
+                      // ユーザーが「OK」をクリック後にリロードする
+                      window.location.reload();
+                    });
+                  } else {
+                    Swal.fire('エラー', data.messages, 'error');
+                  }
+                });
+            }
+          });
+        });
+      });
+
+      // インポート
+      document.getElementById('import').addEventListener('click', function () {
+        Swal.fire({
+          title: '学生情報Excelをアップロード',
+          input: 'file',
+          inputAttributes: {
+            'accept': '.xlsx',
+            'aria-label': 'Excelファイルをアップロードしてください',
+            'style': 'font-size: 16px;'
+          },
+          showCancelButton: true,
+          confirmButtonText: 'アップロード',
+          showLoaderOnConfirm: true,
+          preConfirm: (file) => {
+            // ファイルアップロードのロジックを処理する、FormData や fetch API を使用してファイルをアップロードする
+            const formData = new FormData();
+            formData.append('excel_file', file);
+
+            return fetch('{% url "upload_student" %}', {
+              method: 'POST',
+              headers: {
+                'X-CSRFToken': "{{csrf_token}}" // CSRF トークンを追加する
+              },
+              body: formData,
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'error') {
+                  throw new Error(data.messages); // エラーを直接スローして、catch ブロックで処理させる
+                }
+              })
+              .catch(error => {
+                console.log(error);
+                Swal.showValidationMessage(
+                  `<span style="font-size:16px; font-family:'Yu Gothic', sans-serif;">
+                    ${error.messages || error}
+                  </span>`
+                );
+              });
+
+          },
+          allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'アップロードしました',
+              text: 'アップロード成功',
+            })
+            window.location.reload();
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire({
+              title: 'キャンセルしました',
+              text: 'アップロードがキャンセルされました。',
+              icon: 'error',
+              confirmButtonText: 'はい'
+            });
+          }
+        });
+
+      });
+
+      // エクスポート
+      document.getElementById('export').addEventListener('click', function () {
+        // 检查是否选择了班级
+        var selected = document.querySelector("select[name='grade']");
+        var value = selected.value
+        var gradeText = selected.options[selected.selectedIndex].text;
+        console.log(value)
+        console.log(gradeText)
+        if (!value) {
+          Swal.fire({
+            title: 'エラー',
+            text: 'クラスを選択してください',
+            icon: 'error',
+            confirmButtonText: 'はい'
+          });
+          return;
+        }
+        Swal.fire({
+          title: '確認',
+          text: `【${gradeText}】の学生情報をエクスポートしますか`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'はい',
+          cancelButtonText: 'キャンセル'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // リクエストを送信する
+            fetch('{% url "export_excel" %}', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+              },
+              body: JSON.stringify({ grade: value })
+            })
+              .then(response => {
+                if (!response.ok) {
+                  response.json().then(result => {
+                    Swal.fire({
+                      title: 'ダウンロード失敗',
+                      text: 'サーバーエラー: ' + result.messages,
+                      icon: 'error',
+                      confirmButtonText: '閉じる'
+                    });
+                  });
+                  throw new Error('ネットワークまたはサーバーエラー');
+                }
+                return response.blob();
+              })
+              .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = gradeText + '.xlsx';
+                document.body.appendChild(a);
+                a.click();
+                // 後処理として<a>要素を削除
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url); // Blob URLを解放
+              })
+              .catch(error => {
+                console.error('ダウンロード失敗', error);
+                Swal.fire({
+                  title: 'エラー',
+                  text: 'ダウンロード中にエラーが発生しました。時間を置いてもう一度お試しください。',
+                  icon: 'error',
+                  confirmButtonText: '閉じる'
+                });
+              })
+
+          }
+        });
+      })
+
+
+
+
+
+    </script>
+
+    {% endblock %}

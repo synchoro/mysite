@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Produce Website</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/cart.js"></script>
+</head>
+
+<body>
+    <!-- nav -->
+    <div class="shortcut">
+        <div class="wrapper">
+            <ul>
+                <li><a href="$">log in</a></li>
+                <li><a href="$">registration</a></li>
+                <li><a href="$">orders</a></li>
+                <li><a href="$">member</a></li>
+                <li><a href="$">help</a></li>
+                <li><a href="$">support</a></li>
+                <li><a href="$"><span></span>mobile</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- header -->
+    <div class="header wrapper">
+        <div class="logo">
+            <h1><a href="item001.html">Fresh Produce</a></h1>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html">生鮮品</a></li>
+                <li><a href="index.html">美食</a></li>
+                <li><a href="index.html">キッチン</a></li>
+                <li><a href="index.html">家電</a></li>
+                <li><a href="index.html">リビング</a></li>
+                <li><a href="index.html">育児</a></li>
+                <li><a href="index.html">服装</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="search">
+            <!-- 定位：放大镜 -->
+            <span></span>
+        </div>
+        <div class="car">
+            <span>2</span>
+        </div>
+
+    </div>
+
+
+    <!-- content -->
+
+    <!-- メインコンテンツ -->
+    <article class="content">
+        <!-- 商品画像エリア -->
+        <div class="content_image">
+            <img src="./uploads/shushu.jpeg" alt="">
+            <img src="./uploads/shushu1.jpeg" alt="">
+            <img src="./uploads/shushu3.jpg" alt="">
+
+        </div>
+
+        <!-- 商品テキストエリア -->
+        <div class="content_text">
+            <h2>ナッツ(鼠鼠のお勧め)</h2>
+            <div class="content_text_body">
+                <p class="content_price_before">￥999,999,999</p>
+                <p class="content_price_after">￥1</p>
+                <p class="text">
+                    鼠鼠（shu shu）の口から奪ったナッツ。<br>
+                    ナッツを買うたびに、1匹の鼠鼠が泣いています。<br>
+                    鼠鼠を守るために、ナッツの購入を拒否しましょう。
+                </p>
+            </div>
+
+            <form name="Form1" method="post" action="#" onSubmit="formCheck()">
+                <select name="サイズ" class="item_select" id="">
+                    <option value="">鼠鼠に言いたいことを選択</option>
+                    <option value="1">お疲れ様</option>
+                    <option value="2">申し訳ない</option>
+                    <option value="3">二度と買わない</option>
+                    <option value="4">泣かないで</option>
+                </select>
+
+                <select name="個数" class="item_select" id="">
+                    <option value="">数量を選択</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <button class="cart-button">カートに入れる</button>
+
+            </form>
+
+        </div>
+    </article>
+
+
+
+    <!-- copyright -->
+    <div class="footer">
+        <div class="bottom">
+            <p>
+                <a href="#">About Us</a> |
+                <a href="#">Help</a> |
+                <a href="#">Service</a> |
+                <a href="#">distribution</a> |
+                <a href="#">Cooperation</a> |
+                <a href="#">Recommendation</a> |
+                <a href="#">Links</a>
+            </p>
+            <p>CopyRight @ Fresh Produce</p>
+            <p>by MALOU AND KAPIBARA AND SHUSHU</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

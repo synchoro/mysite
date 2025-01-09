@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 602.5 145.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        filter: url(#outer-glow-1);
+      }
+    </style>
+    <filter id="outer-glow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="10.31"/>
+      <feFlood flood-color="#00ffe3" flood-opacity="1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="_レイヤー_2-2" data-name="レイヤー 2">
+    <g class="cls-2">
+      <polygon class="cls-1" points="235.13 0 116.1 145.5 202.43 145.5 321.45 0 235.13 0"/>
+      <polygon class="cls-1" points="62.47 0 0 76.37 0 145.5 29.78 145.5 148.8 0 62.47 0"/>
+      <polygon class="cls-1" points="407.78 0 288.76 145.5 375.08 145.5 494.11 0 407.78 0"/>
+      <polygon class="cls-1" points="602.5 78.55 602.5 0 580.43 0 461.41 145.5 547.74 145.5 602.5 78.55"/>
+    </g>
+  </g>
+</svg>

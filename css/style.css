@@ -4,13 +4,81 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: '方正剪纸简体'; 
+    src: url('../fonts/方正剪纸简体.ttf') format('方正剪纸简体');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '华康俪金黑W8'; 
+    src: url('../fonts/华康俪金黑W8.TTF') format('华康俪金黑W8');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     font-size: 62.5%; /* 保持 1rem = 10px */
     scroll-behavior: smooth;
 }
 
+/* loading画面設定 */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background-color: #fcfcfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1.5s 2.5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.loading-logo {
+    opacity: 0;
+    animation: logo_fade 2s .5s forwards;
+    width: 200px;
+}
+
+@keyframes logo_fade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(0);   
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+
 body {
-    margin: 2em;
+    margin: 2em 4em;
     font-family:serif,"Zen Antique","游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", sans-serif;
     background-image: url('../image/background.png');
     background-size: cover; 
@@ -106,3 +174,68 @@ header {
     transform: translateY(-5px);
 
 }
+
+/* nav */
+
+.navbar {
+    position: sticky; 
+    top: 0;
+    border-bottom: 0.2em solid #604f40;
+    z-index: 1000;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-between; 
+    padding: 0.8em 0;
+    margin: 0;
+    width: 100%;
+}
+
+.nav-links li {
+    position: relative;
+    flex: 1; 
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links li:first-child::before {
+    content: "";
+    position: absolute;
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 155%;
+    width: 0.1rem;
+    background-color: #604f40;
+}
+
+.nav-links li::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 155%;
+    width: 0.1rem;
+    background-color: #604f40;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #41362c;
+    font-size: 1.6rem;
+    font-weight: bold;
+    transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
+    cursor: pointer;
+    padding: 0 1em;
+}
+
+.nav-links a:hover { 
+    color:#886e5e;
+}
+
+

@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{%static 'css/index.css'%}">
+    <link rel="stylesheet" href="{%static 'css/iconfont.css'%}">
+    <link rel="stylesheet" href="{%static 'css/sweetalert2.css'%}">
+    <script src="{%static 'js/sweetalert2.js'%}"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left">
+            <div class="head">
+                <a href="{% url 'student_list' %}">
+                    <h2>学生管理システム</h2>
+                </a>
+            </div>
+            <div class="profile">
+                ようこそ [ admin ]
+
+                管理者
+
+            </div>
+            <div class="content">
+                <ul>
+
+                    <li class="active"><span class="iconfont icon-fangzi"></span>
+                        <a href="{% url 'grades_list' %}" class="nav-link">クラス管理</a>
+                    </li>
+                    <li class="active"><span class="iconfont icon-kapian"></span>
+                        <a href="/teachers/">先生管理</a>
+                    </li>
+
+                    <li><span class="iconfont icon-ren"></span>
+                        <a href="{% url 'student_list' %}">学生管理</a>
+                    </li>
+                    <li><span class="iconfont icon-shuben"></span>
+                        <a href="/scores/">成績管理</a>
+                    </li>
+
+                    <li><span class="iconfont icon-bianji"></span>
+                        <a href="/change_password/">パスワード変更</a>
+                    </li>
+                    <li><span class="iconfont icon-shangchuan"></span>
+                        <a href="/logout/">ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </div>
+</body>
+
+</html>
