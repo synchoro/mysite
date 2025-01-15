@@ -13,8 +13,8 @@
     font-style: normal;
 }
 @font-face {
-    font-family: '华康俪金黑W8'; 
-    src: url('../fonts/华康俪金黑W8.TTF') format('华康俪金黑W8');
+    font-family: '华康俪金黑W8(P)'; 
+    src: url('../fonts/华康俪金黑W8(P).TTF') format('华康俪金黑W8(P)');
     font-weight: normal;
     font-style: normal;
 }
@@ -230,7 +230,7 @@ header {
 .nav-links a {
     text-decoration: none;
     color: #41362c;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: bold;
     transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
     cursor: pointer;
@@ -264,71 +264,68 @@ header {
 .container h1,h2{
     color: #41362c;
     font-family: '方正剪纸简体';
-    font-size: 4rem;
-    letter-spacing: 0.05em;
+    font-size: 6rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1.4rem;
+
 }
 
 .container p{
     margin: 0 auto;
-    font-size: 1.5rem;
-    line-height: 3.4rem;
+    font-size: 1.8rem;
+    line-height: 3.8rem;
     text-align: justify;
     position: relative;
 }
 
-.main-top{
+.main{
     display: flex;
     justify-content: center;
 }
 
-.main-top-left{
+.main-left{
     width: 66vw;
     padding-right: 2.4em;
     border-right: 0.2rem solid #604f40;
 
 }
 
-.main-top-right{
+.main-right{
     width: 28vw;
     padding-left: 2.4em;
 }
 
-.about-me{
-    display: flex;
-    justify-content: center;
-
-}
-
-.about-me-left img{
-    width: 28vw;
-    margin: 1em 0;
-    
-}
-
-.about-me-left p{
-    width: 28vw;
+.main-left p{
+    line-height: 3.8rem;
 }
 
 
-.about-me-right{
-    margin-left: 2.6em;
+
+/* about me */
+.about-me {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    column-gap: 4rem;
+    row-gap: 2rem;
 }
 
+.about-me img {
+    max-width: 100%; 
+}
 
+/* profile */
 .profile{
-    margin-top: 4em;
+    margin-top: 3rem;
 }
-/* 每行的布局 */
+
 .profile-item {
     display: flex;                 
     justify-content: space-between; 
     align-items: center;          
-    padding-top: 4rem;            
+    padding-top: 5rem;            
     border-bottom: 0.15em solid #695747; 
-    font-size: 1.1em;
+    font-size: 2rem;
 }
-
-/* 标签和内容的样式 */
 .label {
     font-weight: bold;
 }
@@ -337,19 +334,94 @@ header {
     text-align: right;
 }
 
-.about-me-right p{
-    margin-top: 16rem;
-    /* line-height: 2.6rem; */
+
+
+/* hobbies */
+
+.hobbies {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    column-gap: 4rem;
+    row-gap: 2rem;
 }
 
-.part-time-job h1{
+.hobbies img {
+    max-width: 100%; 
+}
+
+.hobbies h1{
+    border-top: 0.2rem solid #695747;
+    border-bottom: 0.2rem solid #695747;
+    padding:1rem 0;
+    letter-spacing: 0.3rem;
+}
+
+.hobbies-left h3{
+    font-size: 2.4rem;
+    margin:1.2rem 0;
+}
+
+.welcome {
+    background-color: #a88673;
+    margin: 3rem 0 3rem;
+    padding: 0.1rem 0;
     text-align: center;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    cursor: pointer;
+}
+
+.welcome a{
+    text-decoration: none;
+}
+
+.welcome h3 {
+    display: flex;
+    justify-content: center;
+    font-family: '方正剪纸简体';
+    font-size: 3.4rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    color: #ffe4cc;
+    /* text-transform: capitalize; */
+    padding: 1.5rem;
+}
+
+.welcome:hover{
+    opacity: 0.8;
+
+}
+
+.image-section img {
+    width: 100%;
+}
+
+
+/* strength-words */
+.strength-words{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    column-gap: 4rem;
+    row-gap: 2rem;
+    margin-top: 1.6rem;
+}
+
+
+/* ------------right------------ */
+/* part-time-job */
+.part-time-job h1,
+.strength h1{
+    text-align: center;
+    letter-spacing: 0.3rem;
+}
+
+.part-time-job p{
+    font-size: 1.4rem;
 }
 
 /* 容器样式 */
 .job-bartender {
     margin: 0 auto;
-    font-size: 1.4rem;
     text-align: justify;
     position: relative;
 }
@@ -400,7 +472,6 @@ header {
 
 .job-home-tutor p{
     margin: 0 auto;
-    font-size: 1.4rem;
     text-align: justify;
     position: relative;
 }
@@ -428,21 +499,50 @@ header {
     background-color: #604f40;
 }
 
-.hobbies{
-    display: flex;
-    justify-content: center;
-    margin:2rem auto;
+/* strengths */
+.strength img{
+    width: 100%;
 }
 
-.hobbies-left{
-    width: 28vw;
+.strength h3{
+    font-family: '华康俪金黑W8(P)';
+    font-size: 3rem;
+    text-align: center;
+    color: #41362c;
+    letter-spacing: 0.06rem;
+    font-weight: 100;
+    margin-bottom: 1.6rem;
+
 }
 
-.hobbies-right{
-    width: 28vw;
-    margin-left: 5rem;
+.strength .personal-strengths h3{
+    margin-top: 1rem;
 }
 
-.hobbies-right img{
-    width: 28vw;
+
+.strength h3::before,
+.strength h3::after {
+    content: ""; /* 伪元素必须要有content属性才会生效 */
+    display: inline-block;
+    width: 2.4rem; /* 图片宽度 */
+    height: 2.4rem; /* 图片高度 */
+    background-image: url('../image/star.png'); /* 左边图片 */
+    background-size: contain; /* 确保图片完整显示 */
+    background-repeat: no-repeat;
+    margin: 0 1rem; /* 图片与文字之间的间距 */
+    vertical-align: middle; /* 垂直居中 */
+    transform: translateY(-0.3rem); /* 向上移动3px */
+}
+
+.strength .personal-strengths h3:before{
+    margin-left: 0;
+}
+
+.strength .personal-strengths h3:after{
+    margin-right: 0;
+}
+
+.strength p{
+    font-size: 1.6rem;
+    margin: 0.8rem 0;
 }
