@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cherry+Bomb+One&family=Creepster&family=Dancing+Script:wght@400..700&family=Dela+Gothic+One&family=Emilys+Candy&family=Lobster&family=Mochiy+Pop+P+One&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@400;700;800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Yusei+Magic&family=Zen+Antique&display=swap"
         rel="stylesheet">
     <!-- css -->
-    <link rel="stylesheet" href="./css/style copy.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>my-portfolio</title>
 </head>
 
@@ -89,7 +89,7 @@
         <div class="main">
             <div class="main-left">
                 <!-- About Me Section -->
-                <h1>About Me</h1>
+                <h1 id="about-me">About Me</h1>
                 <section class="about-me" id="about-me">
 
                     <div class="about-me-left">
@@ -211,11 +211,10 @@
                 <section class="part-time-job" id="job">
                     <h1>Part-time<br>Job</h1>
                     <div class="job-bartender">
-                        <img src="./image/bottle.png" alt="bottle image" class="bottle-img">
-                        <img src="./image/grass.png" alt="grass image" class="grass-img">
+                        <img src="./image/bottle.png" alt="" class="bottle-img">
+                        <img src="./image/grass.png" alt="" class="grass-img">
                         <p>
-                            私は日本に来てからずっとバーでバーテンダーとして働いています。最初は日本の文化をよく知らず、お年寄りのお客様が多かったため、どのように話しかければ良いか悩むことも多く、接客に苦労しました。しかし、自分の成長のために他のバーにも足を運び、接客方法を観察しながら勉強を続けました。その結果、お客様の気持ちやニーズを理解できるようになり、より良い接客ができるようになりました。今ではお客様と楽しくスムーズにコミュニケーションを取ることができています。<br>
-                            この経験はクラスのチームワークにも活かされ、提案やプロジェクト制作の際には、積極的にメンバーの意見を引き出し、皆で一体感を持って取り組むことができました。
+                            私は日本に来てからずっとバーでバーテンダーとして働いています。最初は日本の文化をよく知らず、お年寄りのお客様が多かったため、どのように話しかければ良いか悩むことも多く、接客に苦労しました。しかし、自分の成長のために他のバーにも足を運び、接客方法を観察しながら勉強を続けました。その結果、お客様の気持ちやニーズを理解できるようになり、より良い接客ができるようになりました。今ではお客様と楽しくスムーズにコミュニケーションを取ることができています。
                         </p>
 
                     </div>
@@ -257,6 +256,130 @@
 
         </div>
 
+        <div class="works">
+            <section class="portfolio" id="portfolio">
+                <h1>My Portfolio</h1>
+                <div class="personal-works">
+                    <h2>Personal Works</h2>
+
+                    <div class="works-reverse">
+
+                        <div class="works-introduction">
+                            <img src="./image/cafe-site.png" alt="">
+                            <div class="works-words">
+                                <h3>カフェサイト：FU3 CAFE</h3>
+                                <p>
+                                    HTMLとCSSを学び始めた頃に作ったカフェの紹介サイトです。私の故郷・北京にある、中国の伝統的な雰囲気が漂う「隠海福叁（インハイフサン）」というカフェをテーマにしました。<br>
+                                    サイトには、ホーム、メニュー、アクセス情報、問い合わせページなどを用意し、お店の魅力をシンプルかつ温かみのあるデザインで表現しています。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="works-introduction">
+                            <img src="./image/ec-site.png" alt="">
+                            <div class="works-words">
+                                <h3>ECサイト：Fresh Produce</h3>
+                                <p>
+                                    次は果物や野菜、家電を販売するECサイトを作りました！<br>
+                                    シンプルなデザインに、ちょっとしたJavaScriptの動きや、合計金額を自動計算できる便利機能も加えてみました。<br>
+                                    小動物たちにも気に入ってもらえるよう、かわいくて親しみやすい雰囲気を目指してデザインしています。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="works-introduction">
+                            <img src="./image/movie-site.png" alt="">
+                            <div class="works-words">
+                                <h3>映画サイト：LA LA LAND</h3>
+                                <p>
+                                    大好きな映画『ラ・ラ・ランド』をテーマにしたサイトです！<br>
+                                    少し凝ったCSSエフェクトを加えて、映画の持つ夢とロマン、幻想的な美しさ、そして切ない余韻を感じられるようにデザインしています。<br>
+                                    このサイトを通じて、もう一度あの感動的な世界へ一緒に戻ってみませんか？
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="works-introduction">
+                            <img src="./image/hew.png" alt="">
+                            <div class="works-words">
+                                <h3>写真サイト：写真集「光影画廊」</h3>
+                                <p>
+                                    「時間をとめることはできないから、シャッターを押して、永遠を刻んだ」<br>
+                                    こんな想いから、HAL EVENT WEEK（HEW）で『光影画廊』という写真集を制作しました。これまでに撮影した写真や、自作の映画短編作品を集めたものです。<br>
+                                    ただ作品を展示するだけでなく、訪れた人がその美しさや感動を感じ取れるよう、細部までこだわって制作しています。<br>
+                                    このサイトを通して、私のレンズ越しの「光」と「影」の物語をぜひ感じていただけたら嬉しいです。
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="works-introduction">
+                            <img src="./image/student-management.png" alt="">
+                            <div class="works-words">
+                                <h3>学生管理システム</h3>
+                                <p>
+                                    独学でDjangoを学び、学生管理システムを開発中です！<br>
+                                    このサイトでは、クラス管理・学生管理・教師管理・成績管理の各モジュールがあり、Excelファイルのインポート・エクスポート、データの追加・削除・編集など、基本的なCRUD操作が可能です。現在、クラス管理と学生管理モジュールは完成済みで、その他の機能も引き続き改良中です。<br>
+                                    バックエンドにはMySQLを使用し、フロントエンドとバックエンドの連携にはListView・CreateView・UpdateView・DeleteViewなどのDjango汎用ビューを活用。さらに、フォームバリデーションを実装して、データの正確性を担保しつつ、直感的に操作できるよう工夫しています。<br>
+                                    このプロジェクトを通して、Djangoの理解を深めながら、誰でも使いやすい実用的なWebアプリケーションの完成を目指しています！
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="team-works">
+                    <h2>Team Works</h2>
+
+                    <div class="works-reverse">
+
+                        <div class="works-introduction">
+                            <img src="./image/gay-bar.png" alt="">
+                            <div class="works-words">
+                                <h3>「Deep新宿」サイト：DEEP GAY BAR</h3>
+                                <p>
+                                    「Deep新宿」をテーマにした課題で、うちのチームはゲイバーを訪れることにしました。スタッフの皆さんがとてもフレンドリーで、普段なかなか味わえない独特で楽しい雰囲気を体験できました。その刺激的な体験をもとに、チームで協力してこのウェブサイトを制作！<br>
+                                    私はデザインと前半部分のHTML・CSSコーディングを担当しました。楽しさと新しい発見を詰め込んだので、ぜひこのページを見ながら一緒に「Deep新宿」の魅力を感じてもらえたら嬉しいです！
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="works-introduction">
+                            <img src="./image/animals.png" alt="">
+                            <div class="works-words">
+                                <h3>動物サイト：Happy Animals Land</h3>
+                                <p>
+                                    動物園の経営課題を解決するため、うちのチームは現在、動物をテーマにしたECサイトを開発しています！<br>
+                                    リアルタイムで動物たちの様子を楽しめるライブ映像機能や、遠隔から操作できるIoTリモートカー体験など、まるで動物園にいるかのような臨場感を自宅から味わえる仕組みを取り入れる予定です。さらに、動物園の魅力をおうちでも感じてもらえるよう、限定グッズのオンライン販売も計画中！<br>
+                                    現在は、これらの機能を含めて開発を進めており、2025年3月の完成を目指しています。サイト全体は可愛らしいカートゥーン風の動物キャラクターと実際の動物園の動物たちを組み合わせたデザインで、子どもから大人まで楽しめる仕上がりを目指しています！
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
 
 
     </main>
@@ -267,6 +390,15 @@
 
     <!-- <h1>!!!</h1>
     <a href="./hew/index.html">HWEWE</a> -->
+
+    <!--=================== ScrollReveal ==================-->
+    <!-- <script src="./js/scrollreveal.min.js"></script>
+    <script src="./js/ScrollReveal Animations.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script> -->
+
+
+    <!--=================== Mixitup  ====================-->
+    <!-- <script src="./js/mixitup.min.js"></script> -->
 </body>
 
 </html>

@@ -286,13 +286,14 @@ header {
 .main-left{
     width: 66vw;
     padding-right: 2.4em;
-    border-right: 0.2rem solid #604f40;
+    
 
 }
 
 .main-right{
     width: 28vw;
     padding-left: 2.4em;
+    /* border-left: 0.2rem solid #604f40; */
 }
 
 .main-left p{
@@ -415,46 +416,55 @@ header {
     letter-spacing: 0.3rem;
 }
 
+.part-time-job{
+    padding-left: 4.6rem;
+    border-left: 0.2rem solid #604f40;
+}
+
 .part-time-job p{
     font-size: 1.4rem;
 }
 
-/* 容器样式 */
 .job-bartender {
-    margin: 0 auto;
-    text-align: justify;
-    position: relative;
+    position: static; /* 尝试移除 relative */
+    overflow: visible; /* 确保没有隐藏溢出 */
 }
 
-/* 左侧瓶子图片 */
-.bottle-img {
-    float: left;
-    width: 5vw;  /* 使用视口宽度控制大小 */
-    margin: 1rem 1.5rem 0 0; /* 上方留白 */
-    shape-outside: circle(50%);
-    clip-path: circle(50%);
-    position: relative;
-    transform: translateY(2rem); /* 可根据需要微调位置 */
-}
-
-/* 右侧草图片 */
-.grass-img {
-    float: right;
-    width: 3vw;  /* 使用视口宽度控制大小 */
-    margin: 1rem 0 0 1.5rem;  /* 更大的上方间距 */
-    shape-outside: circle(50%);
-    clip-path: circle(50%);
-    position: relative;
-    transform: translateY(-1rem); /* 向上微调 */
-}
-
-/* 清除浮动 */
 .job-bartender::after {
     content: "";
     display: block;
     clear: both;
 }
 
+.job-bartender .bottle-img{
+    float: left;
+    width: 8rem;
+    height: auto;
+    margin-top: 4rem;
+    shape-outside: url(../image/bottle.png);
+    shape-margin: 1rem;
+    filter: invert(100%) grayscale(100%) contrast(170%) opacity(0.6);
+    mix-blend-mode: screen;
+    z-index: -1;
+}
+
+.job-bartender .grass-img {
+    float: right;
+    width: 5rem;
+    height: auto;
+    margin-top: 24rem;
+    shape-outside: url(../image/grass.png);
+    shape-margin: 1rem;
+    filter: invert(100%) grayscale(100%) contrast(170%) opacity(0.6);
+    mix-blend-mode: screen;
+    z-index: -1;
+}
+
+
+
+.part-time-job .job-bartender p{
+    text-align: justify;
+}
 
 
 .job-home-tutor h2{
@@ -522,16 +532,16 @@ header {
 
 .strength h3::before,
 .strength h3::after {
-    content: ""; /* 伪元素必须要有content属性才会生效 */
+    content: ""; 
     display: inline-block;
-    width: 2.4rem; /* 图片宽度 */
-    height: 2.4rem; /* 图片高度 */
-    background-image: url('../image/star.png'); /* 左边图片 */
-    background-size: contain; /* 确保图片完整显示 */
+    width: 2.4rem; 
+    height: 2.4rem; 
+    background-image: url('../image/star.png'); 
+    background-size: contain; 
     background-repeat: no-repeat;
-    margin: 0 1rem; /* 图片与文字之间的间距 */
-    vertical-align: middle; /* 垂直居中 */
-    transform: translateY(-0.3rem); /* 向上移动3px */
+    margin: 0 1rem; 
+    vertical-align: middle; 
+    transform: translateY(-0.3rem); 
 }
 
 .strength .personal-strengths h3:before{
@@ -546,3 +556,4 @@ header {
     font-size: 1.6rem;
     margin: 0.8rem 0;
 }
+
