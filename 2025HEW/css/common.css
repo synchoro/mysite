@@ -1,0 +1,320 @@
+/* ーーーーーーーーーーー共通部分ーーーーーーーーーーー */
+
+@charset "utf-8";
+
+@import url("reset.css");
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", sans-serif;
+    background-color: #fcfcfc;
+
+}
+
+
+
+/* ハンバーガーマーク */
+
+.open__btn {
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    top: 2vh;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.open__btn.active ._1 {
+
+    top: 23px;
+    left: -1px;
+    width: 40%;
+    transform: translateY(0px) rotate(-135deg);
+    animation: unset;
+}
+
+.open__btn.active ._2 {
+    opacity: 0;
+}
+
+.open__btn.active ._3 {
+    top: 23px;
+    left: -1px;
+    width: 40%;
+    transform: translateY(-0px) rotate(135deg);
+    animation: unset;
+}
+
+.line {
+    height: 2px;
+    display: block;
+    transition: all .4s ease 0s;
+    position: absolute;
+    background-color: #000;
+}
+
+._1 {
+    top: 15px;
+    width: 45%;
+    animation: line01 7s infinite;
+
+}
+
+._2 {
+    top: 23px;
+    width: 35%;
+    animation: line02 7s infinite;
+    animation-delay: 0.4s;
+}
+
+._3 {
+    top: 31px;
+    width: 20%;
+    animation: line03 7s infinite;
+    animation-delay: 0.8s;
+}
+
+
+@keyframes line01 {
+    0% {
+        width: 70%;
+    }
+
+    10% {
+        width: 50%;
+    }
+
+    20% {
+        width: 80%;
+    }
+
+    30% {
+        width: 45%;
+    }
+
+    40% {
+        width: 50%;
+    }
+
+    50% {
+        width: 70%;
+    }
+
+    60% {
+        width: 50%;
+    }
+
+    70% {
+        width: 45%;
+    }
+
+    80% {
+        width: 80%;
+    }
+
+    90% {
+        width: 45%;
+    }
+
+    100% {
+        width: 70%;
+    }
+}
+
+@keyframes line02 {
+    0% {
+        width: 60%;
+    }
+
+    10% {
+        width: 40%;
+    }
+
+    20% {
+        width: 70%;
+    }
+
+    30% {
+        width: 35%;
+    }
+
+    40% {
+        width: 40%;
+    }
+
+    50% {
+        width: 60%;
+    }
+
+    60% {
+        width: 40%;
+    }
+
+    70% {
+        width: 35%;
+    }
+
+    80% {
+        width: 70%;
+    }
+
+    90% {
+        width: 35%;
+    }
+
+    100% {
+        width: 60%;
+    }
+}
+
+@keyframes line03 {
+    0% {
+        width: 50%;
+    }
+
+    10% {
+        width: 30%;
+    }
+
+    20% {
+        width: 60%;
+    }
+
+    30% {
+        width: 25%;
+    }
+
+    40% {
+        width: 30%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    60% {
+        width: 30%;
+    }
+
+    70% {
+        width: 25%;
+    }
+
+    80% {
+        width: 60%;
+    }
+
+    90% {
+        width: 25%;
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+/* ーーーーーーーーーーーheader_navigationーーーーーーーーーーー */
+
+.header__navigation {
+    position: fixed;
+    z-index: 999;
+    top: -120%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #ededed;
+    transition: all 0.6s;
+}
+
+.header__navigation.panelactive {
+    top: 0;
+}
+
+.header__navigation ul {
+    position: absolute;
+    z-index: 999;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*リストのレイアウト設定*/
+
+.header__navigation li {
+    text-align: center;
+}
+
+.header__navigation li a {
+    color: #333;
+    padding: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ーーーーーーーーーーーheader.htmlーーーーーーーーーーー */
+
+.header {
+    width: 100vw;
+    height: 10vh;
+    background-color: aquamarine;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* ーーーーーーーーーーーfooter.htmlーーーーーーーーーーー */
+
+.footer {
+    width: 88vw;
+    height: 10vh;
+    background-color: blueviolet;
+    padding: 50px 0 20px 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: end;
+}
+
+.footer__logo {
+    width: 100%;
+    text-align: center;
+    border-top: solid;
+    padding-top: 20px;
+}
+
+.footer__logo img {
+    width: 100px;
+}
+
+.footer__navigation ul {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+
+
+.footer__copyright {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+}
+
+.footer__copyright span {
+    writing-mode: vertical-lr;
+}

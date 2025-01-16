@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホームページ</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.js"></script>
+    <!-- Alpine.js読み込み -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="/js/animal_tag.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="open__btn">
+            <span class="line _1"></span>
+            <span class="line _2"></span>
+            <span class="line _3"></span>
+        </div>
+
+        <!-- /ハンバーグメニュー -->
+        <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ナビゲーションメニュー＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+        <nav class="header__navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <h2>マップ</h2>
+                        <p>Map</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <h2>ログイン</h2>
+                        <p>log in</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <h2>マイページ</h2>
+                        <p>My page</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <h2>グッズショップ</h2>
+                        <p>Goods shop</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+    <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+    <div class="home__wrapper">
+        <div class="items__1"></div>
+        <div class="items__2"></div>
+        <div class="items__3"></div>
+    </div>
+    <!-- /装飾 -->
+
+    <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊マップ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+    <article class="map__wrapper">
+        <div class="map__map__area">
+            <div class="map__bg__behind">
+                <div class="map__bg__behind__grass">
+                    <img class="map__fream" src="images/home_fream_green.png" alt="green">
+                </div>
+            </div>
+            <div class="map__bg__frount">
+                <div class="map__bg__frount__cloud">
+                    <img src="images/cloud_1.png" alt="cloud">
+                </div>
+                <img class="map__fream" src="images/home_fream_grass.png" alt="white grass">
+            </div>
+            <div class="map__img">
+                <img src="images/map_new.png" alt="map">
+            </div>
+            <div class="map__items">
+                <div class="animal__link __1">
+                    <a href="#">
+                        <img src="images/kapibara.GIF" alt="kapibara" id="map__tag__1" class="current">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </article>
+    <!-- /マップ -->
+
+    <!-- /ホームページ -->
+
+    <script src="js/nav.js"></script>
+</body>
+
+</html>
