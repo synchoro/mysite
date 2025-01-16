@@ -557,3 +557,132 @@ header {
     margin: 0.8rem 0;
 }
 
+
+/* works */
+.works{
+    border-top: 0.3rem solid #604f40;
+    margin: 2rem 0;
+}
+
+.works h1,h2{
+    text-align: center;
+    letter-spacing: 0.3rem;
+}
+
+.works h1{
+    margin: 2rem 0;
+}
+
+.works-introduction{
+    display: flex;
+    justify-content: space-between;
+    margin: 12rem 0;
+    align-items: center;
+    column-gap: 4rem;
+}
+
+.works-introduction:first-child{
+    margin-top: 4rem;
+}
+
+.works-introduction:last-child{
+    margin-bottom: 4rem;
+}
+
+.works-reverse .works-introduction:nth-child(odd){
+    flex-direction: row-reverse;
+}
+
+.works-words{
+    justify-self: center;
+    margin: 0 auto; 
+}
+
+.works-words h3{
+    text-align: center;
+}
+
+.works-words p{
+    text-align: justify;
+}
+
+.works-introduction img{
+    width: 72vh;
+}
+
+
+
+.works h1{
+    background-color: #a88673;
+    margin: 3rem 0 2rem;
+    padding: 1.4rem 0;
+    color: #ffe4cc;
+    letter-spacing: 0.6rem;
+}
+
+.works h1::before,
+.works h1::after {
+    content: ""; 
+    display: inline-block;
+    width: 5rem; 
+    height: 5rem; 
+    background-image: url('../image/star-big.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    margin: 0 4rem; 
+    vertical-align: middle; 
+    transform: translateY(-0.3rem); 
+}
+
+.works h2{
+    font-family: '华康俪金黑W8(P)';
+    font-size: 5.4rem;
+    font-weight: 100;
+    letter-spacing: 0.1rem;
+}
+
+.works h2::before,
+.works h2::after {
+    content: ""; 
+    display: inline-block;
+    width: 3rem; 
+    height: 3rem; 
+    background-image: url('../image/star.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    margin: 0 2.6rem; 
+    vertical-align: middle; 
+    transform: translateY(-0.3rem); 
+}
+
+.works-words a{
+    text-decoration: none;
+}
+
+.works-words h3{
+    font-family: '方正剪纸简体';
+    font-size: 3rem;
+    letter-spacing: 0.3rem;
+    background-color: #a88673;
+    margin-bottom: 2rem;
+    padding: 1.4rem 0;
+    color: #ffe4cc;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    cursor: pointer;
+}
+
+.works-words h3:hover{
+    transform: translateY(-5px);
+    opacity: 0.8;
+}
+
+.works-introduction img {
+    transition: transform 0.6s ease, opacity 0.6s ease,scale 0.6s ease;
+    cursor: pointer;
+}
+
+.works-introduction img:hover{
+    /* transform: scale(1.05); */
+    opacity: 0.75;
+    transform: translateY(-5px);
+}
