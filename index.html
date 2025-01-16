@@ -20,9 +20,9 @@
 <body>
 
     <!-- ローディング -->
-    <!-- <div class="loading">
+    <div class="loading">
         <img class="loading-logo" src="./image/loading-logo1.png" alt="loading-logo">
-    </div> -->
+    </div>
 
     <!-- ヘッダー -->
     <header>
@@ -76,7 +76,7 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#job">About Me</a></li>
             <li><a href="#job">Part-time Job</a></li>
             <li><a href="#hobbies">Hobbies</a></li>
             <li><a href="#strength">Strengths</a></li>
@@ -89,8 +89,8 @@
         <div class="main">
             <div class="main-left">
                 <!-- About Me Section -->
-                <h1 id="about-me">About Me</h1>
-                <section class="about-me" id="about-me">
+                <h1 id="about-me" class="about-me-h1">About Me</h1>
+                <section class="about-me">
 
                     <div class="about-me-left">
                         <img src="./image/my-picture.png" alt="Profile Picture">
@@ -214,8 +214,8 @@
                 <section class="part-time-job" id="job">
                     <h1>Part-time<br>Job</h1>
                     <div class="job-bartender">
-                        <img src="./image/bottle.png" alt="" class="bottle-img">
-                        <img src="./image/grass.png" alt="" class="grass-img">
+                        <img src="./image/bottle.svg" alt="" class="bottle-img">
+                        <img src="./image/grass.svg" alt="" class="grass-img">
                         <p>
                             私は日本に来てからずっとバーでバーテンダーとして働いています。最初は日本の文化をよく知らず、お年寄りのお客様が多かったため、どのように話しかければ良いか悩むことも多く、接客に苦労しました。しかし、自分の成長のために他のバーにも足を運び、接客方法を観察しながら勉強を続けました。その結果、お客様の気持ちやニーズを理解できるようになり、より良い接客ができるようになりました。今ではお客様と楽しくスムーズにコミュニケーションを取ることができています。
                         </p>
@@ -402,6 +402,22 @@
 
                 </div>
 
+                <!-- フッター -->
+                <footer class="footer">
+                    <div class="footer__copyright">
+                        <span>
+                            &copy; ZHOU ANQI
+                        </span>
+                    </div>
+                    <div class="back__btn">
+                        <a href="#about-me">TOP
+                            <span class="arrow1"></span>
+                            <span class="arrow2"></span>
+                        </a>
+                    </div>
+                </footer><!-- /フッター -->
+
+
                 <div class="works-end">
                     <img src="./image/ending.png" alt="">
 
@@ -412,25 +428,17 @@
 
         </div>
 
-
-
     </main>
 
 
-
-
-
-    <!-- <h1>!!!</h1>
-    <a href="./hew/index.html">HWEWE</a> -->
-
     <!--=================== ScrollReveal ==================-->
-    <!-- <script src="./js/scrollreveal.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+
+    <!--=================== Main JS ====================-->
     <script src="./js/ScrollReveal Animations.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script> -->
 
 
-    <!--=================== Mixitup  ====================-->
-    <!-- <script src="./js/mixitup.min.js"></script> -->
 </body>
 
 </html>

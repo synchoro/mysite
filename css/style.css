@@ -252,9 +252,10 @@ header {
     margin-top: 2rem;
     padding: 0em 4rem;
     max-height: 85vh;
-    overflow-y: auto;  /* 允许垂直滚动 */
+    overflow-y: auto;  
     scrollbar-width: none;  /* Firefox 隐藏滚动条 */
     -ms-overflow-style: none;  /* IE 隐藏滚动条 */
+    scroll-behavior: smooth; 
 }
 .container::-webkit-scrollbar {
     display: none; /* Chrome 隐藏滚动条 */
@@ -447,11 +448,11 @@ header {
     width: 8rem;
     height: auto;
     margin-top: 4rem;
-    shape-outside: url(../image/bottle.png);
+    margin-right: 1rem;
+    shape-outside: polygon(0% 15%, 0 0, 0 14%, 59% 14%, 65% 31%, 83% 34%, 100% 39%, 100% 74%, 100% 100%, 0 100%, 0 99%, 0% 85%);
     shape-margin: 1rem;
     filter: invert(100%) grayscale(100%) contrast(170%) opacity(0.6);
     mix-blend-mode: screen;
-    z-index: -1;
 }
 
 .job-bartender .grass-img {
@@ -459,11 +460,11 @@ header {
     width: 5rem;
     height: auto;
     margin-top: 24rem;
-    shape-outside: url(../image/grass.png);
+    margin-left: 1rem;
+    shape-outside: polygon(0 68%, 100% 68%, 100% 100%, 0% 100%);
     shape-margin: 1rem;
     filter: invert(100%) grayscale(100%) contrast(170%) opacity(0.6);
     mix-blend-mode: screen;
-    z-index: -1;
 }
 
 
@@ -567,7 +568,7 @@ header {
 /* works */
 .works{
     border-top: 0.3rem solid #604f40;
-    margin: 2rem 0;
+    margin-top: 2rem;
 }
 
 .works h1,h2{
@@ -592,7 +593,7 @@ header {
 }
 
 .works-introduction:last-child{
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 }
 
 .works-introduction:last-child(2){
@@ -712,4 +713,51 @@ header {
 
 .works-end img{
     width: 100%;
+}
+
+
+
+/* footer */
+.footer__copyright {
+    color: #604f40;
+    float: right;
+    font-weight: 500;
+}
+
+.footer__copyright span {
+    writing-mode: vertical-lr;
+}
+
+.back__btn a {
+    float: right;
+    color: #604f40;
+    margin-right: 3rem;
+    margin-top: 9rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    display: block;
+    width: 100px;
+    text-align: right;
+    transform: rotate(90deg);
+    transform-origin: bottom right;
+}
+
+.arrow1 {
+    width: 48px;
+    height: 1px;
+    background: #604f40;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+}
+
+.arrow2 {
+    width: 1px;
+    height: 12px;
+    background: #604f40;
+    position: absolute;
+    top: calc(50% + 1px);
+    right: 87px;
+    transform: rotate(-130deg);
+    transform-origin: top left;
 }
