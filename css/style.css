@@ -433,8 +433,8 @@ header {
 }
 
 .job-bartender {
-    position: static; /* 尝试移除 relative */
-    overflow: visible; /* 确保没有隐藏溢出 */
+    position: static; 
+    overflow: visible; 
 }
 
 .job-bartender::after {
