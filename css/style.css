@@ -395,7 +395,13 @@ header {
 
 .image-section img {
     width: 100%;
+    transition: transform 0.6s ease, opacity 0.6s ease,scale 0.6s ease;
+    cursor: pointer;
 }
+.image-section img:hover{
+        opacity: 0.8;
+    }
+
 
 
 /* strength-words */
@@ -576,17 +582,21 @@ header {
 .works-introduction{
     display: flex;
     justify-content: space-between;
-    margin: 12rem 0;
+    margin: 8rem 0;
     align-items: center;
     column-gap: 4rem;
 }
 
 .works-introduction:first-child{
-    margin-top: 4rem;
+    margin-top: 6rem;
 }
 
 .works-introduction:last-child{
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
+}
+
+.works-introduction:last-child(2){
+    margin-top: 6rem;
 }
 
 .works-reverse .works-introduction:nth-child(odd){
@@ -607,12 +617,13 @@ header {
 }
 
 .works-introduction img{
-    width: 72vh;
+    width: 75vh;
 }
 
 
 
 .works h1{
+    font-size: 5rem;
     background-color: #a88673;
     margin: 3rem 0 2rem;
     padding: 1.4rem 0;
@@ -624,8 +635,8 @@ header {
 .works h1::after {
     content: ""; 
     display: inline-block;
-    width: 5rem; 
-    height: 5rem; 
+    width: 3.6rem; 
+    height: 3.6rem; 
     background-image: url('../image/star-big.png'); 
     background-size: contain; 
     background-repeat: no-repeat;
@@ -636,17 +647,18 @@ header {
 
 .works h2{
     font-family: '华康俪金黑W8(P)';
-    font-size: 5.4rem;
+    font-size: 4rem;
     font-weight: 100;
     letter-spacing: 0.1rem;
+    margin-top: 2rem;
 }
 
 .works h2::before,
 .works h2::after {
     content: ""; 
     display: inline-block;
-    width: 3rem; 
-    height: 3rem; 
+    width: 2.6rem; 
+    height: 2.6rem; 
     background-image: url('../image/star.png'); 
     background-size: contain; 
     background-repeat: no-repeat;
@@ -685,4 +697,19 @@ header {
     /* transform: scale(1.05); */
     opacity: 0.75;
     transform: translateY(-5px);
+}
+
+.works-words p{
+    font-size: 1.6rem;
+}
+
+.team-works{
+    margin-top: 3rem;
+    border-top: 0.3rem solid #604f40;
+    padding:2rem 0 3rem;
+
+}
+
+.works-end img{
+    width: 100%;
 }
