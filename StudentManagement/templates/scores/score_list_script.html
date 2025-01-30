@@ -1,0 +1,271 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setupFormHandlers();
+        setupActionButtonHandlers();
+    });
+
+    function setupFormHandlers() {
+        // フォーム送信処理
+        const searchForm = document.querySelector('.search-form');
+        searchForm.addEventListener('submit', function (event) {
+            //   event.preventDefault();
+            const formData = new FormData(searchForm);
+        });
+
+        // 全選択
+        const selectAllCheckbox = document.getElementById('select-all');
+        selectAllCheckbox.addEventListener('change', function () {
+            const checkboxes = document.querySelectorAll('input[name="score_ids"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    }
+
+    function setupActionButtonHandlers() {
+
+        // 新規追加ボタン
+        document.getElementById('add').addEventListener('click', function () {
+            showIframe("{% url 'score_create' %}");
+        });
+
+        // 一括削除
+        document.getElementById('bulkDel').addEventListener('click', function () {
+            handleBulkDelete();
+        });
+
+        // インポート
+        document.getElementById('import').addEventListener('click', function () {
+            handleFileImport();
+        });
+
+        // エクスポート
+        document.getElementById('export').addEventListener('click', function () {
+            handleExport();
+        });
+
+        // 個別編集と削除ボタンのイベントをバインド
+        document.querySelectorAll('.edit, .btn-danger').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // デフォルト動作を無効化
+                if (this.classList.contains('edit')) {
+                    showIframe(this.href);
+                } else {
+                    confirmDelete(this.href);
+                }
+            });
+        });
+    }
+
+    function showIframe(url) {
+        Swal.fire({
+            position: "top-end",
+            html: `<iframe src="${url}" style="width:100%;height:685px;border:none;"></iframe>`,
+            width: 600,
+            showConfirmButton: false
+        });
+    }
+
+    function confirmDelete(url) {
+        Swal.fire({
+            title: "削除を確認しますか?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "削除",
+            confirmButtonColor: "#d33"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                }).then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            Swal.fire("削除完了!", data.messages, "success");
+                            window.location.reload(); // ページをリロード
+                        } else {
+                            Swal.fire("エラー!", data.messages, "error");
+                        }
+                    });
+            }
+        });
+    }
+
+    function handleBulkDelete() {
+        const checkboxes = document.querySelectorAll('input[name="score_ids"]:checked');
+
+        // 選択確認、何も選択されていない場合は「削除対象を選択してください」と表示
+        if (checkboxes.length === 0) {
+            Swal.fire({
+                title: "エラー",
+                text: "削除対象を選択してください。",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return; // 処理終了
+        }
+
+        // 選択されている場合、削除を確認
+        Swal.fire({
+            title: "選択したデータを削除しますか?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "削除",
+            confirmButtonColor: "#d33",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // フォームデータを作成
+                const formData = new FormData();
+                // チェックされた項目を追加
+                checkboxes.forEach((checkbox) => {
+                    console.log(checkbox.value)
+                    formData.append('score_ids', checkbox.value);
+                });
+
+                // POSTリクエストを送信して選択されたデータを削除
+                fetch('{% url "score_delete_multiple" %}', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            Swal.fire("削除完了!", "選択されたデータが正常に削除されました。", "success");
+                            window.location.reload();
+                        } else {
+                            Swal.fire("エラー", "削除中にエラーが発生しました。もう一度お試しください。", "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('エラー:', error);
+                        Swal.fire("エラー", "リクエストに失敗しました。ネットワーク接続または管理者にお問い合わせください。", "error");
+                    });
+            }
+        });
+
+    }
+
+    function handleFileImport() {
+        Swal.fire({
+            title: '成績Excelファイルをアップロード',
+            input: 'file',
+            inputAttributes: {
+                'accept': '.xlsx',
+                'aria-label': 'Excelファイルをアップロードしてください'
+            },
+            width: 540,
+            showCancelButton: true,
+            cancelButtonText: 'キャンセル',
+            confirmButtonText: 'アップロード',
+            showLoaderOnConfirm: true,
+            preConfirm: (file) => {
+                // ファイルアップロード処理
+                const formData = new FormData();
+                formData.append('excel_file', file);
+
+                return fetch('{% url "upload_scores"%}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': "{{ csrf_token }}"
+                    },
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'error') {
+                            throw new Error(data.messages);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        Swal.showValidationMessage(`${error.messages || error}`);
+                    });
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'アップロード完了',
+                    text: 'アップロードが成功しました。'
+                })
+                window.location.reload();
+            }
+        });
+    }
+
+    function handleExport() {
+        var select = document.querySelector('select[name="grade"]');
+        var value = select.value;
+        var gradeText = select.options[select.selectedIndex].text;
+        if (!value) {
+            Swal.fire({
+                title: 'エラー!',
+                text: 'クラスを選択してください!',
+                icon: 'error',
+                confirmButtonText: '確認'
+            });
+            return;
+        }
+        Swal.fire({
+            title: '確認',
+            text: '【' + gradeText + '】の成績情報をエクスポートしますか?',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'キャンセル',
+            confirmButtonText: '確認',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('{% url "export_scores" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ grade: value })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            response.json().then(result => {
+                                Swal.fire({
+                                    title: 'ダウンロード失敗',
+                                    text: 'サーバーエラー: ' + result.messages,
+                                    icon: 'error',
+                                    confirmButtonText: '閉じる'
+                                });
+                            });
+                            throw new Error('ネットワークまたはサーバーエラー');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = gradeText + '成績情報.xlsx';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                    })
+                    .catch(error => {
+                        console.error('ダウンロード失敗', error);
+                        Swal.fire({
+                            title: 'エラー',
+                            text: 'ダウンロード中に問題が発生しました。後でもう一度お試しください。',
+                            icon: 'error',
+                            confirmButtonText: '閉じる'
+                        });
+                    });
+
+            }
+        });
+    }
+</script>

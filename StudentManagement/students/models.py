@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from grades.models import Grade
+from teachers.models import Teacher
 
 # Create your models here.
 
@@ -12,15 +13,17 @@ GENDER_CHOICES=(
 class Student(models.Model):
     student_name=models.CharField(max_length=50,verbose_name='名前')
     student_number=models.CharField(max_length=20,unique=True,verbose_name='学籍番号')
-    # 班级表一对多关联
+    # クラス表（一対多の関連）
     grade=models.ForeignKey(Grade,on_delete=models.CASCADE,related_name='students',verbose_name='クラス')
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,verbose_name='性別')
     birthday=models.DateField(verbose_name='生年月日',help_text='例：2001-06-29')
     contact_number=models.CharField(max_length=20,verbose_name='連絡先',help_text='※ハイフンあり')
     address=models.TextField(verbose_name='住所')
 
-    # user表一对一关联
+    # ユーザー表（一対一の関連）
     user=models.OneToOneField(User,on_delete=models.CASCADE)
+    head_teacher = models.ForeignKey(Teacher,on_delete=models.SET_NULL, null=True,blank=True,related_name='students',verbose_name='担任先生')
+    parent_names = models.TextField(blank=True, verbose_name='保護者名一覧') 
 
     
 

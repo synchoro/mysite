@@ -11,7 +11,7 @@ class GradeListView(ListView):
     model = Grade
     template_name='grades/grades_list.html'
     fields=['grade_name','grade_number']
-    #获取数据库中的数据
+    #データベースからデータを取得
     context_object_name='grades'
     paginate_by=10
 
@@ -26,7 +26,7 @@ class GradeListView(ListView):
         return queryset
     
     def get_queryset(self):
-        # 按照班级编号进行排序
+        # クラス番号でソートする
         return Grade.objects.all().order_by('grade_number')
 
 

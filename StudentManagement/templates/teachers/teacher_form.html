@@ -1,0 +1,123 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+<div class="container">
+    {% if teacher.pk %}
+    <h2>教師情報の編集</h2>
+    {% else %}
+    <h2>教師情報の追加</h2>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="handleButton">
+            <button type="submit" id="saveButton">保存</button>
+            <button type="button" id="cancelButton" onclick="window.parent.Swal.close();">キャンセル</button>
+        </div>
+    </form>
+</div>
+
+{% if teacher.pk %}
+<script>
+    var actionUrl = "{% url 'teacher_update' teacher.pk %}";
+</script>
+{% else %}
+<script>
+    var actionUrl = "{% url 'teacher_create' %}";
+</script>
+{% endif %}
+
+<!-- SweetAlert2 CDN -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function validateMessage() {
+        const form = document.querySelector('form');
+        // フォームバリデーション
+        let isValid = true;
+        const formData = new FormData(form);
+        console.log(formData)
+        for (let [key, value] of formData.entries()) {
+            if (!value.trim()) {
+                isValid = false;
+                break;
+            }
+        }
+        return isValid;
+    }
+
+    document.getElementById('cancelButton').addEventListener('click', function () {
+        window.parent.closeIframePopup(); // 親ページの関数を呼び出し
+    });
+    // フォーム送信
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const url = actionUrl;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();  // フォームの通常の送信を停止
+            // フォームデータを収集
+            let formData = new FormData(form);
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')  // CSRFトークンを追加
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.status === 'error') {
+                        // 入れ子のJSON文字列を解析
+                        const errors = JSON.parse(data.messages);
+                        // エラーメッセージのテキストを構築
+                        let errorMessage = '';
+                        for (const field in errors) {
+                            if (errors.hasOwnProperty(field)) {
+                                errors[field].forEach(error => {
+                                    errorMessage += `<li style="color:red;text-align:left;margin-left: 100px;"> ${error.message} </li>`;
+                                });
+                            }
+                        }
+
+                        // SweetAlert2でエラーメッセージを表示
+                        Swal.fire({
+                            icon: 'error',
+                            title: '送信エラー',
+                            html: errorMessage,
+                            confirmButtonText: '閉じる'
+                        });
+                    } else {
+                        // 成功時の処理
+                        Swal.fire({
+                            icon: 'success',
+                            title: '操作成功',
+                            text: 'データが正常に送信されました！'
+                        }).then((result) => {
+                            if (result.value) {
+                                // ユーザーが「OK」をクリックした場合、親ページをリロード
+                                window.parent.location.reload();
+                            }
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ネットワークエラー',
+                        text: 'サーバーに接続できません。しばらくしてからもう一度お試しください。',
+                        confirmButtonText: '閉じる'
+                    });
+                });
+
+        });
+    });
+
+
+</script>

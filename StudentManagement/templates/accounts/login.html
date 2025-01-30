@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title"><span>学生管理システム「EduLink」</span></div>
+        <div class="container">
+            <form action="#" method="post" id="loginForm">
+                <h2>ログイン</h2>
+                <div class="input-group">
+                    <label for="role">役割を選択:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="admin" name="role" value="admin">
+                        <label for="admin">管理者</label>
+
+                        <input type="radio" id="teacher" name="role" value="teacher">
+                        <label for="teacher">教師</label>
+
+                        <input type="radio" id="parent" name="role" value="parent">
+                        <label for="parent">保護者</label>
+
+                        <input type="radio" id="student" name="role" value="student">
+                        <label for="student">学生</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="username">電話番号:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">パスワード:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <input type="checkbox" id="remember" name="remember" class="custom-checkbox">
+                    <label for="remember">パスワードを記憶する</label>
+                </div>
+                <button type="button" onclick="submitLogin()">ログイン</button>
+                <p class="forget">パスワードを忘れましたか？ここをクリック!!!</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 選択されたラジオボタンに応じてラベルのテキストを更新する関数を定義
+        function updateLabels() {
+            var selectedRoleRadio = document.querySelector('input[name="role"]:checked');
+            var usernameLabel = document.querySelector('label[for="username"]');
+            var passwordLabel = document.querySelector('label[for="password"]');
+
+            if (selectedRoleRadio) {
+                var selectedRole = selectedRoleRadio.value;
+                switch (selectedRole) {
+                    case 'admin':
+                        usernameLabel.textContent = 'ユーザー名:';
+                        passwordLabel.textContent = 'パスワード:';
+                        break;
+                    case 'teacher':
+                        usernameLabel.textContent = '電話番号:';
+                        passwordLabel.textContent = 'パスワード:';
+                        break;
+                    case 'parent':
+                        usernameLabel.textContent = '電話番号:';
+                        passwordLabel.textContent = 'パスワード:';
+                        break;
+                    case 'student':
+                        usernameLabel.textContent = '学籍番号:';
+                        passwordLabel.textContent = 'パスワード:';
+                        break;
+                }
+            } else {
+                // ラジオボタンが選択されていない場合のデフォルトラベル
+                usernameLabel.textContent = 'アカウント:';
+                passwordLabel.textContent = 'パスワード:';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 関連するラジオボタンを取得
+            var radios = document.querySelectorAll('input[type="radio"][name="role"]');
+
+            // 各ラジオボタンにイベントリスナーを追加
+            radios.forEach(function (radio) {
+                radio.addEventListener('change', updateLabels);
+            });
+
+            // 初期状態に合わせて1回呼び出す
+            updateLabels();
+        });
+
+        function showAlert(title, text) {
+            Swal.fire({
+                icon: 'error',
+                title: title,
+                text: text,
+            });
+        }
+
+        function validateForm() {
+            // ラジオボタンが選択されているか確認
+            const selectedRadio = document.querySelector('input[name="role"]:checked');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (!selectedRadio) {
+                showAlert('エラー', '役割を選択してください');
+                return false; // フォーム送信を防止
+            }
+
+            if (!username.length) {
+                usernameLabel = document.querySelector('label[for="username"]').textContent.slice(0, -1);
+                showAlert('エラー', usernameLabel + 'を入力してください');
+                return false;
+            }
+
+            if (password === '') {
+                showAlert('エラー', 'パスワードを入力してください');
+                return false;
+            }
+            return true; // 検証成功時に明示的にtrueを返す
+        }
+
+
+        function submitLogin() {
+            // 検証を実行し、不合格の場合は処理を停止
+            if (!validateForm()) return;
+            // フォームを送信
+            var csrftoken = '{{ csrf_token }}';
+            // フォーム要素を取得
+            var formElement = document.getElementById('loginForm');
+            // FormDataオブジェクトを作成
+            var formData = new FormData(formElement);
+            formData.append('csrfmiddlewaretoken', csrftoken); // CSRFトークンをフォームデータに追加
+
+            fetch('/login/', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.messages)
+                    if (data.status === 'success') {
+                        Swal.fire({
+                            icon: "success",
+                            title: "ログイン成功",
+                            timer: 1500,
+                            didClose: () => {
+                                console.log(data.role)
+                                if (data.role === 'student' | data.role === 'parent') {
+                                    window.location.href = '{% url "my_scores" %}'
+                                } else {
+                                    window.location.href = "/"; // 目標URLに置き換え
+                                }
+                            }
+                        });
+                    } else {
+                        Swal.fire('エラー', data.messages, 'error');
+                    }
+                })
+                .catch(error => {
+                    Swal.fire('エラー', 'ネットワークエラーまたはサーバーが応答しません。', 'error');
+                });
+
+        };
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load url_utils %}
+{% block content %}
+<div class="right">
+    <h2 style="text-align: center; padding: 10px;">
+        {% if request.user.student %}
+        「 {{ request.user.student.student_name }} 」の成績リスト
+        {% elif request.user.parent %}
+        {% with request.user.parent.children.all as children %}
+        「 {% for child in children %}{{ child.student_name }}{% if not forloop.last %}、{% endif %}{% endfor %} 」の成績リスト
+        {% endwith %}
+        {% endif %}
+    </h2>
+    <div class="bottom">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>試験名</th>
+                    <th>名前</th>
+                    <th>クラス</th>
+                    <th>学籍番号</th>
+                    <th>国語</th>
+                    <th>数学</th>
+                    <th>英語</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td><input type="checkbox" name="score_ids" value="{{ score.id }}"></td>
+                    <td>{{ score.title }}</td>
+                    <td>{{ score.student_name }}</td>
+                    <td>{{ score.grade.grade_name }}</td>
+                    <td>{{ score.student_number }}</td>
+                    <td>{{ score.japanese_score }}</td>
+                    <td>{{ score.math_score }}</td>
+                    <td>{{ score.english_score }}</td>
+                    <td>
+                        <a href="{% url 'score_detail' score.pk %}" class="text-detail"> 詳細を見る</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9">学生情報がありません</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div>
+                <div>
+                    <span>{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_previous %}
+                    <a href="?{% search_url request page=1 %}">最初</a>
+                    <a href="?{% search_url request page=page_obj.previous_page_number %}">前のページ</a>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?{% search_url request page=page_obj.next_page_number %}">次のページ</a>
+                    <a href="?{% search_url request page=page_obj.paginator.num_pages %}">最後</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'scores/score_list_script.html' %}
+
+{% endblock %}

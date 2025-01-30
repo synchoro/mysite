@@ -6,7 +6,7 @@
         <div class="class-info">
             <form method="get" action="{% url 'grades_list' %}">
                 <span>クラス名:</span>
-                <input type="text" name="search" placeholder="クラス名を検索..." value="">
+                <input type="text" name="search" placeholder="クラス名を検索..." value="" class="grade_input">
                 <input type="submit" value="検索">
                 <a href="{% url 'grade_create' %}">
                     <button type="button" class="add_short">追加</button>

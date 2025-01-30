@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .table-bordered {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<div class="container">
+    <h2>{{ score.title }}</h2>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>名前:</th>
+                <td>{{ score.student_name }}</td>
+            </tr>
+            <tr>
+                <th>学籍番号:</th>
+                <td>{{ score.student_number }}</td>
+            </tr>
+            <tr>
+                <th>クラス:</th>
+                <td>{{ score.grade.grade_name }}</td>
+            </tr>
+            <tr>
+                <th>国語の成績:</th>
+                <td>{{ score.japanese_score }}</td>
+            </tr>
+            <tr>
+                <th>数学の成績:</th>
+                <td>{{ score.math_score }}</td>
+            </tr>
+            <tr>
+                <th>英語の成績:</th>
+                <td>{{ score.english_score }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

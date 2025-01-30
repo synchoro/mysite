@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+<!-- {% load url_utils %} -->
+{% load url_utils %}
+{% block content %}
+<div class="right">
+    <div class="top">
+        <div class="tool">
+            <div class="class-info">
+                <form method="get" action="{% url 'teachers_list' %}">
+                    <span>クラス:</span>
+                    <select name="grade">
+                        <option value="" selected>クラスを選択してください</option>
+                        {% for grade in grades %}
+                        <option value="{{ grade.pk }}">
+                            {{ grade.grade_name }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                    <span>名前/電話番号:</span>
+                    <input type="text" name="search">
+                    <input type="submit" value="検索">
+                    <a href="javascript:;">
+                        <button type="button" class="add" id="add">新規作成</button>
+                    </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>クラス</th>
+                    <th>名前</th>
+                    <th>性別</th>
+                    <th>電話番号</th>
+                    <th>誕生日</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td><input type="checkbox" name="teacher_ids" value="{{ teacher.id }}"></td>
+                    <td>{{ teacher.grade.grade_name }}</td>
+                    <td>{{ teacher.teacher_name }}</td>
+                    <td>{{ teacher.get_gender_display }}</td>
+                    <td>{{ teacher.get_formatted_phone_number }}</td>
+                    <td>{{ teacher.birthday|date:"Y-m-d" }}</td>
+                    <td>
+                        <a href="{% url 'teacher_update' teacher.pk %}" class="btn btn-primary btn-sm edit">編集</a>
+                        <a href="{% url 'teacher_delete' teacher.pk %}" class="btn btn-danger btn-sm del">削除</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9">教師情報はありません</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div>
+                <div>
+                    <!-- <span>ページ数： {{ page_obj.paginator.num_pages  }}</span> -->
+                    <span>{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_previous %}
+                    <a href="?{% search_url request page=1 %}">最初</a>
+                    <a href="?{% search_url request page=page_obj.previous_page_number %}">前へ</a>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?{% search_url request page=page_obj.next_page_number %}">次へ</a>
+                    <a href="?{% search_url request page=page_obj.paginator.num_pages %}">最後</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .swal2-html-container.error-message {
+        font-size: 14px;
+        font-family: 'Yu Mincho', serif;
+    }
+</style>
+
+
+<script type="text/javascript">
+    // CSRFトークンをグローバルJavaScript変数として保存
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+<script>
+    // 教師情報を追加
+    document.getElementById('add').addEventListener('click', function () {
+        showIframe("{% url 'teacher_create' %}");  // 教師追加用のURL
+    });
+
+    // 教師情報を編集
+    document.querySelectorAll('.edit').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();  // リンクのデフォルト動作を無効化
+            var url = this.getAttribute('href');  // クリックされたボタンのURLを取得
+            showIframe(url);  // showIframeを呼び出し、URLを渡す
+        });
+    });
+
+    // 教師情報を削除
+    document.querySelectorAll('.del').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // リンクのデフォルト動作を無効化
+            var url = this.getAttribute('href');
+            Swal.fire({
+                title: "削除しますか？",
+                icon: "warning",
+                showCancelButton: true,
+                cancelButtonText: 'キャンセル',
+                confirmButtonText: "削除",
+                confirmButtonColor: "#d33",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // サーバーにAJAXリクエストを送信して教師を削除
+                    fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': csrftoken,  // CSRFトークンを確実に追加
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            if (data.status === 'success') {
+                                Swal.fire("削除成功!", data.messages, "success");
+                                // ページリロードまたはリフレッシュを追加
+                                window.location.reload();
+                            } else {
+                                Swal.fire("エラー!", data.messages, "error");
+                            }
+                        })
+                        .catch(error => console.log('Error:', error));
+                }
+            });
+        })
+    })
+
+
+
+    // 全選択
+    document.addEventListener('DOMContentLoaded', function () {
+        // 全選択チェックボックス要素を取得
+        const selectAllCheckbox = document.getElementById('select-all');
+
+        // 全選択チェックボックスのクリックイベントを監視
+        selectAllCheckbox.addEventListener('change', function () {
+            // name属性が'teacher_ids'のチェックボックスを全て取得
+            const teacherCheckboxes = document.querySelectorAll('input[name="teacher_ids"]');
+
+            // 全選択チェックボックスの選択状態に基づいて各教師チェックボックスの状態を設定
+            teacherCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+
+
+    function showIframe(url) {
+        Swal.fire({
+            position: "top-end",
+            html: `<iframe src="${url}" width="100%" height="530px" frameborder="0";></iframe>`,
+            width: 600,
+            showConfirmButton: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("保存成功!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("変更は保存されませんでした", "", "info");
+            }
+        });
+    }
+
+
+    // ポップアップを閉じる
+    function closeIframePopup() {
+        Swal.close();
+    }
+
+</script>
+
+
+{% endblock %}

@@ -34,13 +34,13 @@ class StudentForm(forms.ModelForm):
     
     def clean_contact_number(self):
         contact_number = self.cleaned_data.get('contact_number')
-        # 正規表現のルールを定義（允许没有连字符的输入）
+        # 正規表現のルールを定義（ハイフンなしの入力を許容）
         phone_pattern = re.compile(r"^(070|080|090)(\d{4})(\d{4})$")  # 匹配没有连字符的格式
         if phone_pattern.match(contact_number):
-            # 自动添加连字符
+            # ハイフンを自動的に追加
             contact_number = f"{contact_number[:3]}-{contact_number[3:7]}-{contact_number[7:]}"
         else:
-            # 验证带连字符的格式
+            # ハイフン付きの形式を検証
             phone_pattern_with_hyphens = re.compile(r"^(070|080|090)-\d{4}-\d{4}$")
             if not phone_pattern_with_hyphens.match(contact_number):
                 raise ValidationError('電話番号の形式が正しくありません。<br>（正しい形式: 090-1234-5678）')

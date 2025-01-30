@@ -1,27 +1,42 @@
 /* 版心 */
+@font-face {
+    font-family: 'UD デジタル 教科書体'; 
+    src: url('../fonts/UDDigiKyokashoN-R.ttc') format('ttc');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .wrapper {
-    width: 1366px;
-    height: 768px;
+    background-image: url(../images/login-bg1.jpg);
+    margin: 0; 
+    height: 100vh; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    font-family: 'Kiwi Maru';
 }
 
 .title {
     float: left;
-    margin: 126px 235px;
-    font-size: 24px;
-    font-weight: normal;
-    color: #011a3a;
+    margin-top: 110px;
+    margin-left: 230px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2.8px;
+    text-shadow: 2px 2px 3px rgba(64, 64, 64, 0.5); 
 }
 
 .title span {
     margin-left: 10px;
-    color: #10c058;
+    color: #ffffff
 
 }
 
 .container {
     float: right;
-    margin: 200px 194px 0 0;
-    background-color: #fff;
+    margin: 170px 194px 0 0;
+    /* background-color: #fff; */
     padding: 20px;
     border-radius: 5px;
 
@@ -29,28 +44,32 @@
 
 .container h2 {
     margin-top: 0;
-    font-size: 24px;
+    margin-bottom: 34px;
+    font-size: 32px;
     font-weight: 700;
-    color: #182235;
+    color: #ffffff;
+    text-shadow: 2px 2px 3px rgba(64, 64, 64, 0.5); 
+    text-align: center;
 }
 
 .container p {
     margin-top: 13px;
     margin-bottom: 52px;
-    font-size: 14px;
-    color: #939393;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 500;
 }
 
 .container .input-group {
-    margin: 10px 0;
+    margin: 18px 0;
 
 }
 
 .container label {
     display: block;
     margin-bottom: 5px;
-    font-size: 14px;
-    color: #67788d;
+    font-size: 15px;
+    color: #ffffff
 }
 
 .container input[type="text"],
@@ -58,12 +77,17 @@
     width: 353px;
     height: 38px;
     border: solid 1px #b3b3b3;
-    border-radius: 5px;
+    border-radius: 20px;
+    padding: 0 10px; 
+    font-size: 14px;
+    outline: none; 
+    opacity: 0.6; 
 }
 
 .container input[type="text"]:hover,
 .container input[type="password"]:hover {
-    border: solid 1px #0dc05a;
+    border: solid 1px #787dfe;
+    background-color: rgba(120, 125, 254, 0.2); 
 }
 
 
@@ -71,58 +95,53 @@
 .container label[for="remember"] {
     display: inline-block;
     vertical-align: middle;
-    font-size: 12px;
+    font-size: 14px;
     /* line-height: 12px; */
-    color: #67788d;
+    color:#ffffff;
 }
 
 .container input[type="checkbox"]:checked+label[for="remember"] {
-    color: #0dc05a;
+    color: #ffffff;
 
 }
-
-/* .container input[type="checkbox"]:checked {
-    color: #0dc05a;
-}
-
-.custom-checkbox {
-    color: green;
-} */
-
-
-
 
 
 
 .container button {
     width: 100%;
     padding: 10px;
-    background-color: #1e201f;
+    background-color: #787dfe;
     border: none;
-    font-size: 18px;
+    font-size: 22px;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: opacity 0.4s ease-in-out;
+    font-family: 'Kiwi Maru';
+    font-weight: 500;
 }
 
 .container button:hover {
-    background-color: #0dc05a;
+    opacity: 0.7;
 }
 
 .container .forget {
     display: block;
     margin-top: 20px;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
-    color: #1a1e25;
+    color: #fff;
+    cursor: pointer;
+    transition:  0.3s ease-in-out;
+    font-weight: 500;
 
 }
 
 .container .forget:hover {
-    color: #0dc05a;
+    color: rgba(120, 125, 254, 0.8)
 }
+
 
 .radio-group {
     display: flex;

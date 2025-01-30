@@ -6,13 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management</title>
+    <title>学生管理システム「EduLink」</title>
 
     <link rel="stylesheet" href="{%static 'css/base.css'%}">
     <link rel="stylesheet" href="{%static 'css/index.css'%}">
     <link rel="stylesheet" href="{%static 'css/iconfont.css'%}">
     <link rel="stylesheet" href="{%static 'css/sweetalert2.css'%}">
     <script src="{%static 'js/sweetalert2.js'%}"></script>
+    <script src="{%static 'js/active.js'%}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 
 </head>
 
@@ -25,30 +27,53 @@
                 </a>
             </div>
             <div class="profile">
-                ようこそ [ admin ]
+                ようこそ [ {{ request.session.username }} ]
 
+
+                {% if request.session.user_role == 'admin' %}
                 管理者
+                {% elif request.session.user_role == 'student' %}
+                さん
+                {% elif request.session.user_role == 'teacher' %}
+                先生
+                {% else %}
+                保護者
+                {% endif %}
 
             </div>
             <div class="content">
                 <ul>
+                    {% if request.session.user_role == 'admin' %}
 
-                    <li class="active"><span class="iconfont icon-fangzi"></span>
+                    <li class="{% if current_page == 'grades_list' %}active{% endif %}">
+                        <span class="iconfont icon-fangzi"></span>
                         <a href="{% url 'grades_list' %}" class="nav-link">クラス管理</a>
                     </li>
-                    <li class="active"><span class="iconfont icon-kapian"></span>
-                        <a href="/teachers/">先生管理</a>
+                    <li class="{% if current_page == 'teachers_list' %}active{% endif %}"><span
+                            class="iconfont icon-kapian"></span>
+                        <a href="{% url 'teachers_list' %}">先生管理</a>
                     </li>
-
-                    <li><span class="iconfont icon-ren"></span>
+                    {% endif %}
+                    {% if request.session.user_role == 'admin' or request.session.user_role == 'teacher' %}
+                    <li class="{% if current_page == 'student_list' %}active{% endif %}"><span
+                            class="iconfont icon-ren"></span>
                         <a href="{% url 'student_list' %}">学生管理</a>
                     </li>
-                    <li><span class="iconfont icon-shuben"></span>
-                        <a href="/scores/">成績管理</a>
+                    <li class="{% if current_page == 'score_list' %}active{% endif %}"><span
+                            class="iconfont icon-shuben"></span>
+                        <a href="{% url 'score_list' %}">成績管理</a>
                     </li>
+                    {% endif %}
+                    {% if request.session.user_role == 'student' or request.session.user_role == 'parent' %}
+                    <li class="{% if current_page == 'my_scores' %}active{% endif %}"><span
+                            class="iconfont icon-bianji"></span>
+                        <a href="{% url 'my_scores' %}">成績情報</a>
+                    </li>
+                    {% endif %}
 
-                    <li><span class="iconfont icon-bianji"></span>
-                        <a href="/change_password/">パスワード変更</a>
+                    <li class="{% if current_page == 'change_password' %}active{% endif %}"><span
+                            class="iconfont icon-bianji"></span>
+                        <a href="{% url 'change_password' %}">パスワード変更</a>
                     </li>
                     <li><span class="iconfont icon-shangchuan"></span>
                         <a href="/logout/">ログアウト</a>

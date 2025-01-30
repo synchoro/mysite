@@ -27,8 +27,8 @@ class StudentListView(ListView):
 
     def get_queryset(self):
         queryset=super().get_queryset()
-        grade_id=self.request.GET.get('grade') #获取班级
-        keyword=self.request.GET.get('search') #获取搜索内容
+        grade_id=self.request.GET.get('grade') # クラスを取得
+        keyword=self.request.GET.get('search') # 検索内容を取得
         if grade_id:
             queryset=queryset.filter(grade__pk=grade_id)
         if keyword:
@@ -38,7 +38,7 @@ class StudentListView(ListView):
     
     def get_context_data(self):
         context=super().get_context_data()
-        # 获取所有班级并添加到上下文
+        # 全てのクラスを取得し、コンテキストに追加
         context['grades']=Grade.objects.all().order_by('grade_number')
         context['current_grade']=self.request.GET.get('grade','')
         return context
@@ -50,24 +50,24 @@ class StudentCreateView(CreateView):
     form_class=StudentForm
 
     def form_valid(self, form):
-        # 获取验证通过的字段值
+        # 検証を通過したフィールドの値を取得
         student_name=form.cleaned_data.get('student_name')
         student_number = form.cleaned_data.get('student_number')
-        # 写入到auth_user表
+        # auth_userテーブルに書き込み
         username=student_name+'_'+student_number
         password=student_number[-6:]
         users=User.objects.filter(username=username)
         if users.exists():
             user=users.first()
         else:
-            # 创建auth_user表记录
-            # create_user会自动加密 所以传递原始明文就好
+            # auth_userテーブルのレコードを作成
+            # create_userは自動的に暗号化するため、平文をそのまま渡せばよい
             user=User.objects.create_user(username=username, password=password)
-        # 写入到student
+        # studentに書き込み
         form.instance.user=user
         form.save()
 
-        #返回json响应
+        # JSONレスポンスを返す
         return JsonResponse({
             'status':'success',
             'messages':'操作成功',
@@ -88,17 +88,17 @@ class StudentUpdateView(UpdateView):
     form_class=StudentForm
 
     def form_valid(self, form):
-        # 获取学生对象实例
+        # 学生オブジェクトのインスタンスを取得
         student=form.save(commit=False)
-        # 检查一下是否修改了student_name和student_number
+        # student_nameまたはstudent_numberが変更されたかどうかを確認
         if 'student_name' in form.changed_data or 'student_number' in form.changed_data:
             student.user.username=form.cleaned_data.get('student_name')+'_'+form.cleaned_data.get('student_number')
             student.user.password=make_password(form.cleaned_data.get('student_number')[-6:])
             student.user.save()
-        # 保存student模型
+        # studentモデルを保存
         student.save()
 
-        # 返回json响应
+        # JSONレスポンスを返す
         return JsonResponse({
             'status':'success',
             'messages':'操作成功',
@@ -106,7 +106,7 @@ class StudentUpdateView(UpdateView):
 
     def form_invalid(self, form):
         errors=form.errors.as_json()
-        print(form.errors)  # 输出具体的错误日志到控制台
+        print(form.errors)  # コンソールに具体的なエラーログを出力
         return JsonResponse({
             'status':'error',
             'messages':errors,
@@ -116,7 +116,7 @@ class StudentUpdateView(UpdateView):
 class StudentDeleteView(DeleteView):
     success_url=reverse_lazy('student_list')
     model = Student
-    # def 一个覆盖父类的删除方法
+    # 親クラスの削除メソッドをオーバーライド
     def delete(self, request, *args, **kwargs):
         try:
             # 削除対象のオブジェクトを取得する

@@ -1,0 +1,116 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+<div class="container">
+    {% if score.pk %}
+    <h2>学生成績の編集</h2>
+    {% else %}
+    <h2>学生成績の追加</h2>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <div class="handleButton">
+            <button type="submit" id="saveButton">保存</button>
+            <button type="button" id="cancelButton" onclick="window.parent.Swal.close();">キャンセル</button>
+        </div>
+    </form>
+</div>
+
+{% if score.pk %}
+<script>
+    var actionUrl = "{% url 'score_update' score.pk %}";
+</script>
+{% else %}
+<script>
+    var actionUrl = "{% url 'score_create' %}";
+</script>
+{% endif %}
+
+<!-- SweetAlert2 CDN -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function validateMessage() {
+        const form = document.querySelector('form');
+        // フォームの検証
+        let isValid = true;
+        const formData = new FormData(form);
+        console.log(formData)
+        for (let [key, value] of formData.entries()) {
+            if (!value.trim()) {
+                isValid = false;
+                break;
+            }
+        }
+        return isValid;
+    }
+
+    document.getElementById('cancelButton').addEventListener('click', function () {
+        window.parent.closeIframePopup(); // 親ページの関数を呼び出す
+    });
+    // フォームの送信
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const url = actionUrl;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();  // フォームの通常送信を阻止
+            // フォームデータの収集
+            let formData = new FormData(form);
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')  // CSRFトークンを追加
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.status === 'error') {
+                        console.log(data)
+                        // エラー処理
+                        let errorMessage = '';
+                        for (const field in data.messages) {
+                            if (data.messages.hasOwnProperty(field)) {
+                                data.messages[field].forEach(error => {
+                                    errorMessage += `<li style="color:red;text-align:left;margin-left: 100px;">${field}: ${error.message}</li>`;
+                                });
+                            }
+                        }
+                        // エラーメッセージを表示
+                        Swal.fire({
+                            icon: 'error',
+                            title: '送信エラー',
+                            html: `<ul>${errorMessage}</ul>`,
+                            confirmButtonText: '閉じる'
+                        });
+                    } else {
+                        console.log('successを判定')
+                        // 成功時の処理
+                        Swal.fire({
+                            icon: 'success',
+                            title: '操作成功',
+                            text: 'データが正常に送信されました！'
+                        }).then((result) => {
+                            if (result.value) {
+                                // ユーザーが「確定」をクリックした場合、親ページをリロード
+                                window.parent.location.reload();
+                            }
+                        });
+                    }
+                }).catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ネットワークエラー',
+                        text: 'サーバーに接続できませんでした。後でもう一度試してください。',
+                        confirmButtonText: '閉じる'
+                    });
+                });
+
+        });
+    });
+</script>
