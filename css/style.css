@@ -8,13 +8,13 @@
 
 @font-face {
     font-family: '方正剪纸简体'; 
-    src: url('../fonts/方正剪纸简体.ttf') format('方正剪纸简体');
+    src: url('../fonts/方正剪纸简体.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: '华康俪金黑W8(P)'; 
-    src: url('../fonts/华康俪金黑W8(P).TTF') format('华康俪金黑W8(P)');
+    src: url('../fonts/华康俪金黑W8(P).TTF') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
